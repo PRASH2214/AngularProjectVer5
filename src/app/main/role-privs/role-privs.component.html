@@ -1,0 +1,49 @@
+<div id="tableauReport" class="page-layout simple fullwidth" fxLayout="column">
+  <div [ngClass]="classname" fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="black-fg" fxLayout="row" fxLayoutAlign="start center" fxHide>
+        <mat-icon class="secondary-text s-18">home</mat-icon>
+        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+        <span class="secondary-text">Dashboard</span>
+      </div>
+      <div class="report_title h1 mt-5">{{rptName}}</div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center start">
+    </div>
+  </div>
+  <div class="container">
+    <form [formGroup]="RolePrivsForm">
+      <div class="row">
+        <div class="col-15">
+          <label for="fk_RoleGlCode">Role</label>
+        </div>
+        <div class="col-25">
+          <mat-select  panelClass="my-select-panel-class" formControlName="fk_RoleGlCode" placeholder="Select Role" (ngModelChange)="OnRoleChange()">
+            <mat-option *ngFor="let Role of RoleList" [value]="Role.intGlCode">{{Role.varRoleName}}</mat-option>
+          </mat-select>
+        </div>
+      </div>
+      <div class="example-button-row">
+        <button title="Save" (click)="btnSave_Click()" mat-raised-button color="accent">Save</button>
+        <button title="Cancel" (click)="btnClear_Click()" mat-raised-button color="warn">Cancel</button>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-100">
+        <dx-data-grid #dataGridRef id="gridContainer" [dataSource]="Role_Privs" keyExpr="fk_MenuGlCode"
+          [allowColumnReordering]="true"
+          [selectionFilter]="['chrActive', '=', 'Y']" [showBorders]="true">
+          <dxo-selection mode="multiple" [deferred]="true"></dxo-selection>
+          <dxo-paging [pageSize]="50"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[30, 50, 70]" [showInfo]="true">
+          </dxo-pager>
+          <dxo-filter-row visible="true"></dxo-filter-row>
+          <dxi-column caption="Menu Name" dataField="varMenuName"></dxi-column>
+        </dx-data-grid>
+       
+      </div>
+    </div>
+
+  </div>
+
+</div>

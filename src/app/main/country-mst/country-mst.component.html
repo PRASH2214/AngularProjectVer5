@@ -1,0 +1,198 @@
+<div id="tableauReport" class="page-layout simple fullwidth" fxLayout="column">
+  <div [ngClass]="classname" fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="black-fg" fxLayout="row" fxLayoutAlign="start center" fxHide>
+        <mat-icon class="secondary-text s-18">home</mat-icon>
+        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+        <span class="secondary-text">Dashboard</span>
+      </div>
+      <div class="report_title h1 mt-5">{{rptName}}</div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <!-- <button button class="save-button">
+        <mat-icon class="secondary-text s-28" title="Save" (click)="btnSave_Click()">add_box</mat-icon>
+      </button>
+      <button button class="FullScreen">
+        <mat-icon class="secondary-text s-28" title="Full Screen">cancel</mat-icon>
+      </button> -->
+      <!-- <button button class="delete-button">
+        <mat-icon class="secondary-text s-28" title="Save" (click)="btnSave_Click()">add_box</mat-icon>
+      </button>
+      <button button class="download-button">
+        <mat-icon class="secondary-text s-28" title="Cancel" (click)="btnClear_Click()"> cancel</mat-icon>
+      </button> -->
+    </div>
+  </div>
+  <div class="container">
+    <form [formGroup]="CountryForm">
+      <div class="row">
+        <div class="col-20">
+          <label for="varCountryCode">Country Code</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;" disabled type="text" number formControlName="varCountryCode" name="varCountryCode"
+            onKeyPress="if(this.value.length==10) return false;" (keypress)=" numberOnly($event)"
+            [ngClass]="{ 'is-invalid': submitted && f.varCountryCode.errors }">
+          <div *ngIf="submitted && f.varCountryCode.errors" class="invalid-feedback">
+            <div *ngIf="f.varCountryCode.errors.required" style="color: red;">Country code is required</div>
+          </div>
+        </div>
+        <div class="col-20">
+          <label for="varCountryName">Country Name</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;" type="text" formControlName="varCountryName" name="varCountryName"
+            onKeyPress="if(this.value.length==100) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varCountryName.errors }">
+          <div *ngIf="submitted && f.varCountryName.errors" class="invalid-feedback">
+            <div *ngIf="f.varCountryName.errors.required" style="color: red;">Country name is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-20">
+          <label for="varCurrencyCode">Currency Code</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;" type="text" formControlName="varCurrencyCode" name="varCurrencyCode"
+            onKeyPress="if(this.value.length==10) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varCurrencyCode.errors }">
+          <div *ngIf="submitted && f.varCurrencyCode.errors" class="invalid-feedback">
+            <div *ngIf="f.varCurrencyCode.errors.required" style="color: red;">Currency Code is required</div>
+          </div>
+        </div>
+        <div class="col-20">
+          <label for="varDefaultCurrencyCode">Default Currency Code</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;" type="text" formControlName="varDefaultCurrencyCode" name="varDefaultCurrencyCode"
+            onKeyPress="if(this.value.length==10) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varDefaultCurrencyCode.errors }">
+          <div *ngIf="submitted && f.varDefaultCurrencyCode.errors" class="invalid-feedback">
+            <div *ngIf="f.varDefaultCurrencyCode.errors.required" style="color: red;">Default currency code is required
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-20">
+          <label for="varIconPath">Icon Path</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;" type="text" formControlName="varIconPath" name="varIconPath"
+            onKeyPress="if(this.value.length==50) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varIconPath.errors }">
+          <div *ngIf="submitted && f.varIconPath.errors" class="invalid-feedback">
+            <div *ngIf="f.varIconPath.errors.required" style="color: red;">Icon path code is required</div>
+          </div>
+        </div>
+        <div class="col-20">
+          <label for="varCurICONFlag">Icon Flag</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;" type="text" formControlName="varCurICONFlag" name="varCurICONFlag"
+            onKeyPress="if(this.value.length==50) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varCurICONFlag.errors }">
+          <div *ngIf="submitted && f.varCurICONFlag.errors" class="invalid-feedback">
+            <div *ngIf="f.varCurICONFlag.errors.required" style="color: red;">Current Icon flag code is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-20">
+          <label for="varCurICONDefaultFlag">ICON Default Flag</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;" type="text" formControlName="varCurICONDefaultFlag" name="varCurICONDefaultFlag"
+            onKeyPress="if(this.value.length==50) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varCurICONDefaultFlag.errors }">
+          <div *ngIf="submitted && f.varCurICONDefaultFlag.errors" class="invalid-feedback">
+            <div *ngIf="f.varCurICONDefaultFlag.errors.required" style="color: red;">Current Icon default Flag is
+              required</div>
+          </div>
+        </div>
+        <div class="col-20">
+          <label for="chrActive">Active</label>
+        </div>
+        <div class="col-25">
+          <mat-checkbox formControlName="chrActive" [checked]="chrActive" class="example-margin">
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="example-button-row">
+        <button title="Save" (click)="btnSave_Click()" mat-raised-button color="accent">Save</button>
+        <button title="Cancel" (click)="btnClear_Click()" mat-raised-button color="warn">Cancel</button>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-100">
+
+        <dx-data-grid id="gridContainer" [dataSource]="country" keyExpr="intGlCode" [allowColumnReordering]="true"
+          [showBorders]="true">
+          <dxo-paging [pageSize]="5"></dxo-paging>
+
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+          </dxo-pager>
+          <dxo-filter-row visible="true"></dxo-filter-row>
+          <dxi-column cellTemplate="cellTemplate" caption="Country Code" dataField="varCountryCode" alignment="center">
+          </dxi-column>
+          <div *dxTemplate="let cell of 'cellTemplate'">
+            <a style="cursor:pointer;text-decoration: underline;font-weight:bold;"
+              (click)="LB_Click(cell.data.intGlCode)">{{cell.text}}</a>
+          </div>
+          <dxi-column caption="Country Name" dataField="varCountryName" alignment="center">
+          </dxi-column>
+          <dxi-column caption="Currency Code" dataField="varCurrencyCode" alignment="center"></dxi-column>
+          <dxi-column caption="Default Currency Code" dataField="varDefaultCurrencyCode" alignment="center">
+          </dxi-column>
+          <dxi-column caption="Icon Path" dataField="varIconPath" alignment="center"></dxi-column>
+          <dxi-column caption="ICON Flag" dataField="varCurICONFlag" alignment="center"></dxi-column>
+          <dxi-column caption="ICON Default Flag" dataField="varCurICONDefaultFlag" alignment="center">
+          </dxi-column>
+          <dxi-column caption="Active" dataField="Active" alignment="center"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
+
+
+    <!-- <table class="table" scrollY="true" style="width: 100%;text-align: center;">
+      <thead>
+        <tr>
+          <th>
+            <label>
+              <input type="checkbox" />
+              Select All</label>
+          </th>
+          <th>Country Code</th>
+          <th>Country Name</th>
+          <th>Currency Code</th>
+          <th>Default Currency Code</th>
+          <th>Icon Path</th>
+          <th>ICON Flag</th>
+          <th>ICON Default Flag</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let Cou of country">
+          <td>
+            <label for="chkCountry_{{Cou.intGlcode}}">
+              <input type="checkbox" />
+
+            </label>
+          </td>
+          <td>{{Cou.varCountryCode}}</td>
+          <td><a [routerLink]="" (click)="loadCountryToEdit(Cou.intGlCode)">{{Cou.varCountryName}}</a></td>
+          <td>{{Cou.varCurrencyCode}}</td>
+          <td>{{Cou.varDefaultCurrencyCode}}</td>
+          <td>{{Cou.varIconPath}}</td>
+          <td>{{Cou.varCurICONFlag}}</td>
+          <td>{{Cou.varCurICONDefaultFlag}}</td>
+        </tr>
+      </tbody>
+    </table> -->
+  </div>
+
+</div>

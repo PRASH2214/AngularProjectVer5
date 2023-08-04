@@ -1,0 +1,98 @@
+<div class="content-wrapper">
+
+  <div class="page-header">
+    <h3 class="page-title"> Slots </h3>
+
+  </div>
+  <div class="row dashboardcard">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+
+
+        <div class="card-body">
+
+          <div class=" row mt-6">
+            <label>
+              <input type="radio" (click)="typechange(4)" name="typestatus" checked>
+              &nbsp; <span>Patient</span>
+            </label>&nbsp; &nbsp;&nbsp;
+            <label>
+              <input type="radio" (click)="typechange(6)" name="typestatus">
+              &nbsp; <span>MR</span>
+            </label>
+
+          </div>
+          <div class=" row mt-6">
+
+
+            <div class="col-md-6">
+
+
+              <div class="calendar-wrapper">
+                <app-calendar #myCalendar (dateSelected)="dateSelected($event)"></app-calendar>
+
+              </div>
+            </div>
+
+
+
+            <div class="col-md-6">
+
+
+              <div class="table-responsive">
+                <table class="table table-striped ">
+
+                  <thead class="thead-dark">
+                    <tr>
+
+
+                      <th> Slot Start </th>
+                      <th> Slot End </th>
+                      <th *ngIf="sloattype==4"> No Of Patients</th>
+                      <th *ngIf="sloattype==6"> No Of MR</th>
+                      <th> </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of sloatdatalst">
+
+                      <td>{{row.SlotFromTime.totalMinutes * 1000 * 60| date:'hh:mm a':'UTC'}}
+                      </td>
+
+
+                      <td> {{row.SlotEndTime.totalMinutes * 1000 * 60| date:'hh:mm a':'UTC'}}
+                      </td>
+                      <td>
+                        <input type="number" class="form-control" [(ngModel)]="row.NoOfPatientsAllowed" />
+                      </td>
+
+                      <td>
+                        <input type="checkbox" [(ngModel)]="row.IsActive" />
+
+                      </td>
+
+
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+
+
+          </div>
+
+          <hr>
+          <button type="submit" class="btn btn-primary mr-2" [hidden]="!btnshow" (click)="Save()">Submit</button>
+          <button class="btn btn-light" routerLink="/doctor/dashboard">Cancel</button>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<mat-toolbar class="mat-accent-bg m-0 mat-dialog-draggable-title" mat-dialog-draggable-title>
+  <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+    <span class="title dialog-title">{{rptName}}</span>
+    <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+      <mat-icon title="Close">close</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div mat-dialog-content class="p-8 m-0" fusePerfectScrollbar>
+  <div id="tableauReport" class="page-layout simple fullwidth" fxLayout="column">
+    <div class="content">
+      <div class="full-width">
+        <div id="container">
+          <div id="tableauVizPop"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div> -->

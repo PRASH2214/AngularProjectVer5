@@ -1,0 +1,89 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar class="mat-accent-bg m-0 mat-dialog-draggable-title" mat-dialog-draggable-title>
+    <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">New Message</span>
+      <button mat-icon-button (click)="openConfirmDialog()" aria-label="Close dialog">
+        <mat-icon title="Close">close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-24 m-0" fusePerfectScrollbar>
+    <mat-menu #addMenu="matMenu" class="w-100-p">
+      <mat-nav-list style="max-height: 241px;">
+        <mat-list-item (click)="stopClose($event)" *ngFor="let item of receipientAddress">
+          <mat-checkbox [(ngModel)]="item.checked" (click)="toggleShortcut($event, item)">{{item.varName}}</mat-checkbox>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-menu>
+    <form name="composeForm" [formGroup]="composeForm" class="compose-form" fxLayout="column" fxFlex>
+      <mat-form-field>
+        <!-- <input matInput name="to" placeholder="To" formControlName="to" type="email" required> -->
+        <textarea matInput name="to" placeholder="To" formControlName="to" rows="2" required style="padding-right: 35px;">
+
+        </textarea>
+        <button mat-icon-button [matMenuTriggerFor]="addMenu" matTooltip="Add receipeient" style="right: 0;position: absolute; bottom: 0;top:0"
+          (menuOpened)="onMenuOpen()">
+          <mat-icon>person_add</mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- <div class="show-hide-extra-fields" (click)="toggleExtraToFields()">
+        <span [fxShow]="!showExtraToFields">Show CC & BCC</span>
+        <span [fxShow]="showExtraToFields">Hide CC & BCC</span>
+      </div> -->
+
+      <mat-form-field>
+        <input matInput name="cc" placeholder="Cc" formControlName="cc" type="email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput name="bcc" placeholder="Bcc" formControlName="bcc" type="email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput name="subject" placeholder="Subject" formControlName="subject">
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea matInput name="message" placeholder="Message" formControlName="message" rows="6">
+
+        </textarea>
+      </mat-form-field>
+
+      <div *ngIf="files">
+        <div class="attachment-list" *ngFor="let file of files">
+          <div class="attachment" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="w-100-p">
+              <span class="filename">{{file.name}}</span>
+              <span class="size">({{file.size}})</span>
+              <mat-progress-bar *ngIf="progress" mode="determinate" [value]="progress[file.name].progress | async"></mat-progress-bar>
+            </div>
+            <button mat-icon-button aria-label="Delete attachment" *ngIf="!this.uploading" (click)="removeAttachment(file)">
+              <mat-icon class="s-16">close</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <button mat-raised-button (click)="sendMail()" class="save-button mat-accent" [disabled]="composeForm.invalid || this.uploading"
+        aria-label="SAVE">
+        {{btnSaveText}}
+      </button>
+
+      <input name="file" hidden type="file" #fileInput (change)="onFilesAdded()" multiple />
+      <button mat-icon-button matTooltip="Attach a file" (click)="fileInput.click()" [@animate]="{value:'*', params:{delay:'300ms',scale:'0.2'}}"
+        [disabled]="this.uploading">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+    </div>
+
+    <!-- <button mat-icon-button (click)="matDialogRef.close(['delete',composeForm])" aria-label="Delete" matTooltip="Delete">
+      <mat-icon>delete</mat-icon>
+    </button> -->
+  </div>
+</div>

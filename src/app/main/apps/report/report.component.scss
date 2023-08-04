@@ -1,0 +1,52 @@
+@import "src/@fuse/scss/fuse";
+
+iframe{
+    cursor:default !important; 
+}
+
+
+.save-product-button {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor:pointer;
+    @include media-breakpoint('lt-md') {
+        top: 8px;
+    }
+}
+.save-product-FullScreen {
+    position: absolute;
+    right: 55px;
+    top: 10px;
+    cursor:pointer;
+    @include media-breakpoint('lt-md') {
+        top: 6px;
+    }
+}
+.add-comment-btn{
+    right: 95px;
+    top: 10px;
+    position: absolute;
+    cursor:pointer;
+
+    @include media-breakpoint('lt-md') {
+        top: 8px;
+    }
+}
+.reset-product-button {
+    position: absolute;
+    right: 135px;
+    top: 10px;
+    cursor:pointer;
+    @include media-breakpoint('lt-md') {
+        top: 8px;
+    }
+}
+.report_title{
+
+    @include media-breakpoint('lt-md') {
+        font-size: 20px;
+    }
+}
+
+

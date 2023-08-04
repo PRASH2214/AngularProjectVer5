@@ -1,0 +1,34 @@
+
+.odd {
+  display: inline-block;
+  padding: 2px 7px;
+  height: 26px;
+  font-size: 18px;
+  line-height: 23px;
+  border-radius: 4px;
+  background-color: #FD9A57;
+  margin-top: 8px;
+  margin-left: 2px;
+}
+
+
+.even {
+  display: inline-block;
+  padding: 2px 7px;
+  height: 26px;
+  font-size: 18px;
+  line-height: 23px;
+  border-radius: 4px;
+  background-color: #F1CF6B;
+  margin-top: 8px;
+  margin-left: 2px;
+}
+
+
+
+
+.myCustomModalClass > .modal-dialog {
+  max-width: 1490px !important;
+  min-width: 971px !important;   
+  width: 95% !important;
+}

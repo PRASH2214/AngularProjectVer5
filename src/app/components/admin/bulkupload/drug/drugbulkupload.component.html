@@ -1,0 +1,59 @@
+<div class="content-wrapper">
+
+  <div class="page-header">
+    <h3 class="page-title">Drug Bulk Upload</h3>
+
+  </div>
+  <div class="row dashboardcard">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+
+
+        <div class="card-body">
+
+
+
+          <div class="col-md-6 form-group">
+
+            <div class="input-group col-xs-12">
+              <input type="file" class="form-control file-upload-info" placeholder="Upload Image"
+                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                (change)="handleFileInput($event)" />
+              <span class="input-group-append">
+                <button class="file-upload-browse btn btn-primary" (click)="Save()" type="button">Upload</button>
+              </span>
+            </div>
+            <label id="confirm_password-error" class="error mt-2 text-danger" for="confirm_password">
+              <small class="w-100 d-block mb-1"> 1. Format xlsx., .xls</small>
+              <small class="w-100 d-block mb-1"> 2. Size less than 5MB</small>
+
+            </label>
+
+            <div class="clearfix"> </div>
+
+
+
+          </div>
+
+
+
+       
+
+
+        </div>
+        <hr>
+
+
+      </div>
+
+
+
+
+    </div>
+  </div>
+
+
+
+
+
+</div>

@@ -1,0 +1,236 @@
+<div class="content-wrapper">
+
+    <div class="page-header">
+        <h3 class="page-title"> Add Hospital </h3>
+
+    </div>
+    <div class="row dashboardcard">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+
+
+                <div class="card-body">
+                    <form [formGroup]="userForm">
+
+
+
+                        <div class=" row mt-4">
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Hospital Name</label>
+                                <input type="text" autocomplete="off" class="form-control" name="hospitalName"
+                                    formControlName="hospitalName" placeholder="Hospital Name"
+                                    [ngClass]="{ 'is-invalid': submitted && f.hospitalName.errors }" maxlength="250" UserNameOnly
+                                    >
+                                <div *ngIf="submitted && f.hospitalName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.hospitalName.errors.required">Hospital Name is required</div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 form-group">
+
+
+                                <label for="exampleInputUsername1">State<span class="text-danger">*</span></label>
+                                <select class="form-control" name="stateId" formControlName="stateId"
+                                    [ngClass]="{ 'is-invalid': submitted && f.stateId.errors }" #stateddl
+                                    (change)='onStateSelected(stateddl.value)'>
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objstate of allstatelst" value="{{objstate.stateId}}">
+                                        {{objstate.stateName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && f.stateId.errors" class="invalid-feedback">
+                                    <div *ngIf="f.stateId.errors.required">State is required</div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">District<span class="text-danger">*</span></label>
+
+
+                                <select class="form-control" name="districtId" formControlName="districtId"
+                                    [ngClass]="{ 'is-invalid': submitted && f.districtId.errors }" #districtdll
+                                    (change)='onDistrictSelected(districtdll.value)'>
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objdist of alldistrictlst" value="{{objdist.districtId}}">
+                                        {{objdist.districtName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && f.districtId.errors" class="invalid-feedback">
+                                    <div *ngIf="f.districtId.errors.required">District is required</div>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">City<span class="text-danger">*</span></label>
+                                <select class="form-control" name="cityId" formControlName="cityId"
+                                    [ngClass]="{ 'is-invalid': submitted && f.cityId.errors }">
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objcity of allcitylst" value="{{objcity.cityId}}">
+                                        {{objcity.cityName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && f.cityId.errors" class="invalid-feedback">
+                                    <div *ngIf="f.cityId.errors.required">City is required</div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Hospital Address<span
+                                        class="text-danger">*</span></label>
+                                <textarea class="form-control" name="hospitalAddress" formControlName="hospitalAddress"
+                                    rows="4" spellcheck="false" placeholder="Hospital Address"
+                                    [ngClass]="{ 'is-invalid': submitted && f.hospitalAddress.errors }" maxlength="250" ></textarea>
+                                <div *ngIf="submitted && f.hospitalAddress.errors" class="invalid-feedback">
+                                    <div *ngIf="f.hospitalAddress.errors.required">Hospital Address is required</div>
+                                </div>
+
+                            </div>
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Hospital License Number<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="hospitalLicenseNumber"
+                                    formControlName="hospitalLicenseNumber" rows="4" spellcheck="false" maxlength="70"
+                                    placeholder="Hospital License Number"
+                                    [ngClass]="{ 'is-invalid': submitted && f.hospitalLicenseNumber.errors }" />
+                                <div *ngIf="submitted && f.hospitalLicenseNumber.errors" class="invalid-feedback">
+                                    <div *ngIf="f.hospitalLicenseNumber.errors.required">Hospital License Number is
+                                        required</div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Hospital link <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="hospitalLink"
+                                    formControlName="hospitalLink" placeholder="Hospital Link"
+                                    [ngClass]="{ 'is-invalid': submitted && f.hospitalLink.errors }" maxlength="500">
+                                <div *ngIf="submitted && f.hospitalLink.errors" class="invalid-feedback">
+                                    <div *ngIf="f.hospitalLink.errors.required">Hospital link is required</div>
+                                    <div *ngIf="f.hospitalLink.errors.pattern">Enter valid link.</div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Owner Name<span class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="ownerName"
+                                    formControlName="ownerName" rows="4" spellcheck="false" placeholder="Ower Name"
+                                    [ngClass]="{ 'is-invalid': submitted && f.ownerName.errors }" maxlength="99" UserNameOnly />
+                                <div *ngIf="submitted && f.ownerName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.ownerName.errors.required">Owner Name is required</div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Owner Mobile<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="ownerMobile"
+                                    maxlength="10" numbersOnly formControlName="ownerMobile" rows="4" spellcheck="false"
+                                    placeholder="Owner Mobile"
+                                    [ngClass]="{ 'is-invalid': submitted && f.ownerMobile.errors }" />
+                                <div *ngIf="submitted && f.ownerMobile.errors" class="invalid-feedback">
+                                    <div *ngIf="f.ownerMobile.errors.required">Owner Mobile is required
+                                    </div>
+                                    <div *ngIf="f.ownerMobile.errors.pattern">Enter only number.</div>
+                                    <div *ngIf="f.ownerMobile.errors.minlength">Enter valid number.</div>
+
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Contact Name<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="contactName"
+                                    formControlName="contactName" rows="4" spellcheck="false" placeholder="Contact Name"
+                                    [ngClass]="{ 'is-invalid': submitted && f.contactName.errors }" maxlength="99" UserNameOnly />
+                                <div *ngIf="submitted && f.contactName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.contactName.errors.required">Contact Name is required</div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Contact Mobile<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="contactMobile"
+                                    maxlength="10" numbersOnly formControlName="contactMobile" rows="4" spellcheck="false"
+                                    placeholder="Contact Mobile"
+                                    [ngClass]="{ 'is-invalid': submitted && f.contactMobile.errors }" />
+                                <div *ngIf="submitted && f.contactMobile.errors" class="invalid-feedback">
+                                    <div *ngIf="f.contactMobile.errors.required">Contact Mobile is required</div>
+
+                                    <div *ngIf="f.contactMobile.errors.pattern">Enter only number.</div>
+                                    <div *ngIf="f.contactMobile.errors.minlength">Enter valid number.</div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">PinCode<span class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="pinCode" maxlength="6"  numbersOnly
+                                    formControlName="pinCode" rows="4" spellcheck="false" placeholder="Pincode"
+                                    [ngClass]="{ 'is-invalid': submitted && f.pinCode.errors }" />
+                                <div *ngIf="submitted && f.pinCode.errors" class="invalid-feedback">
+                                    <div *ngIf="f.pinCode.errors.required">PinCode is required</div>
+                                    <div *ngIf="f.pinCode.errors.pattern">Enter only number.</div>
+                                    <div *ngIf="f.pinCode.errors.minlength">Enter valid Pin Code.</div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 form-group mb-1">
+
+                                <div class="checkbox switcher float-left">
+                                    <label for="test1">
+                                        <span>Active/Inactive</span> <input type="checkbox" id="test1"
+                                            formControlName="status">
+                                        <span><small></small></span>
+
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-primary mr-2" (click)="Save()">Submit</button> <button
+                            class="btn btn-light" routerLink="/admin/hospital">Cancel</button>
+
+
+
+                    </form>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>

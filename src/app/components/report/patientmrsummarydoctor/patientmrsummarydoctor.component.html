@@ -1,0 +1,238 @@
+<div class="content-wrapper">
+
+  <div class="page-header">
+    <h3 class="page-title"> Patient /MR Summary </h3>
+
+  </div>
+  <div class="row dashboardcard">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+
+
+          <div class="row status-switch">
+
+
+
+
+            <div class="col-md-4 col-12 form-group">
+              <label for="exampleInputUsername1">From<span class="text-danger">*</span></label><br/>
+              <mat-form-field appearance="fill">
+
+                <input matInput [matDatepicker]="dp1" [formControl]="date1">
+                <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                <mat-datepicker #dp1 panelClass="example-day-picker">
+                </mat-datepicker>
+              </mat-form-field>
+
+
+            </div>
+            <div class="col-md-4 col-12 form-group">
+              <label for="exampleInputUsername1">To<span class="text-danger">*</span></label><br/>
+              <mat-form-field appearance="fill">
+
+                <input matInput [matDatepicker]="dp2" [formControl]="date2">
+                <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                <mat-datepicker #dp2 panelClass="example-day-picker">
+                </mat-datepicker>
+              </mat-form-field>
+
+
+            </div>
+
+
+           
+
+            <div class="col-md-4 col-12 form-group">
+
+              <label class="mt-3">
+                <input type="radio" name="type" (click)="typechange(1)">
+                &nbsp; <span> Patient Details </span>
+              </label>&nbsp; &nbsp;&nbsp;
+
+              <label class="mt-3">
+                <input type="radio" name="type" (click)="typechange(2)">
+                &nbsp; <span>MR Details</span>
+              </label>
+            </div>
+            <div class="col-md-2 col-3">
+
+              <button type="submit" class="btn btn-primary btn-fw w-m-50"
+                (click)="search(dp1,dp2)">View</button>
+
+
+            </div>
+
+
+            <div class="col-md-2 col-3">
+
+              <button type="submit" class="btn btn-primary btn-fw w-m-50 ml-2"
+                (click)="captureScreenpdf(dp1,dp2)">Download</button>
+
+            </div>
+
+          </div>
+          <div class="row mt-2" *ngIf="dispreporttype==1">
+
+            <div class="col-12">
+              <div class="table-responsive">
+                <table class="table table-striped ">
+
+                  <thead class="thead-dark">
+                    <tr>
+                      <th> Sr. no </th>
+                      <th> Hospital Name </th>
+
+                      <th> Branch </th>
+                      <th> Doctor Name </th>
+                      <th> Department </th>
+                      <th> Appointment Type </th>
+                      <th>Date </th>
+                      <th>Patient First Name </th>
+                      <th> Patient Last Name </th>
+
+                      <th>Gender </th>
+                      <th> State</th>
+
+                      <th>District </th>
+                      <th> City</th>
+                      <th> Address</th>
+
+                      <th> Mobile Number</th>
+
+                      <th> Email Address</th>
+                      <th>DOB</th>
+                      <th>Pincode</th>
+                      <th> Concern</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of Searchlst;let index =index;let isOdd=odd;let isEven=even;let i=index"
+                      [class.table-active]="isOdd" [class.table-active1]="isEven">
+                      <td class="py-1">
+                        {{i + 1}}
+                      </td>
+                      <td>{{row.HospitalName}} </td>
+                      <td>{{row.BranchName}} </td>
+                      <td>{{row.DoctorName}} </td>
+                      <td>{{row.DepartmentName}} </td>
+                      <td>{{row.AppointmentType==1 ? "Online Appointment":"Offline Appointment"}}</td>
+                      <td>{{row.MonthYear | date: 'dd-MM-yyyy'}} </td>
+                      <td>{{row.FirstName}} </td>
+                      <td>{{row.LastName}} </td>
+                      <td>{{row.Gender==1 ? "Male":"Female"}}</td>
+                      <td>{{row.StateName}} </td>
+                      <td>{{row.DistrictName}} </td>
+                      <td>{{row.CityName}} </td>
+                      <td>{{row.Address}} </td>
+
+                      <td>{{row.Mobile}} </td>
+                      <td>{{row.EmailAddres}} </td>
+                      <td>{{row.DOB| date: 'dd-MM-yyyy'}} </td>
+
+                      <td>{{row.PinCode}} </td>
+                      <td>{{row.Concern}} </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+
+
+
+          <div class="row mt-2" *ngIf="dispreporttype==2">
+
+            <div class="col-12">
+              <div class="table-responsive">
+                <table class="table table-striped ">
+
+                  <thead class="thead-dark">
+                    <tr>
+                      <th> Sr. no </th>
+                      <th> Hospital Name </th>
+
+                      <th> Branch </th>
+                      <th> Doctor Name </th>
+                      <th> Department </th>
+                      <th> Appointment Type </th>
+                      <th>Date </th>
+                      <th>MR First Name </th>
+                      <th> MR Last Name </th>
+
+                      <th>Gender </th>
+                      <th> State</th>
+
+                      <th>District </th>
+                      <th> City</th>
+                      <th> Address</th>
+
+                      <th> Mobile Number</th>
+
+
+                      <th>DOB</th>
+                      <th>Pincode</th>
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of Searchlst;let index =index;let isOdd=odd;let isEven=even;let i=index"
+                      [class.table-active]="isOdd" [class.table-active1]="isEven">
+                      <td class="py-1">
+                        {{i + 1}}
+                      </td>
+                      <td>{{row.HospitalName}} </td>
+                      <td>{{row.BranchName}} </td>
+                      <td>{{row.DoctorName}} </td>
+                      <td>{{row.DepartmentName}} </td>
+                      <td>{{row.AppointmentType==1 ? "Online Appointment":"Offline Appointment"}}</td>
+                      <td>{{row.Date | date: 'dd-MM-yyyy'}} </td>
+                      <td>{{row.FirstName}} </td>
+                      <td>{{row.LastName}} </td>
+                      <td>{{row.Gender==1 ? "Male":"Female"}}</td>
+                      <td>{{row.StateName}} </td>
+                      <td>{{row.DistrictName}} </td>
+                      <td>{{row.CityName}} </td>
+                      <td>{{row.Address}} </td>
+
+                      <td>{{row.Mobile}} </td>
+
+                      <td>{{row.DOB| date: 'dd-MM-yyyy'}} </td>
+
+                      <td>{{row.PinCode}} </td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+<style>
+  .modal-content {
+    max-width: 1240px !important;
+  }
+</style>

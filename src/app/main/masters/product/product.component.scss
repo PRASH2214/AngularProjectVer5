@@ -1,0 +1,153 @@
+@import "src/@fuse/scss/fuse";
+#product {
+
+    .header {
+
+        .product-image {
+            overflow: hidden;
+            width: 56px;
+            height: 56px;
+            border: 3px solid rgba(0, 0, 0, 0.12);
+            @include media-breakpoint('xs'){
+                margin-left: 10px;
+            }
+
+            img {
+                height: 100%;
+                width: auto;
+                max-width: none;
+            }
+        }
+
+        .subtitle {
+            margin: 6px 0 0 0;
+        }
+        @include media-breakpoint-down(sm) {
+            margin: 8px 0;
+            height: 100% !important;
+            min-height: 150px !important;
+            max-height: 220px !important;
+        }
+
+        @include media-breakpoint-down(xs) {
+            margin: 8px 0;
+            height: 100% !important;
+            min-height: inherit !important;
+            max-height: 220px !important;
+        }
+    }
+
+    .content {
+
+        .mat-tab-group,
+        .mat-tab-body-wrapper,
+        .tab-content{
+            flex: 1 1 auto;
+            max-width: 100%;
+        }
+
+        .mat-tab-body-content {
+            display: flex;
+        }
+
+        .mat-tab-label {
+            height: 64px;
+        }
+
+        .product-image {
+            overflow: hidden;
+            width: 128px;
+            height: 128px;
+            margin-right: 16px;
+            margin-bottom: 16px;
+            border: 3px solid rgba(0, 0, 0, 0.12);
+
+            img {
+                height: 100%;
+                width: auto;
+                max-width: none;
+            }
+        }
+
+    }
+    .top-bg {
+        @include media-breakpoint-down(xs) {
+            height: 240px;
+        }
+    }
+
+
+    /*-------Web-Start-by-Pramod----------*/
+
+.label-margin { margin: 0 10px 0 0; }
+.int_form_field_main .mat-form-field {
+  width: 50%;
+  }
+
+.check_form_field_main .mat-form-field-infix {
+  width: 100%;
+  display: inline-block;
+}
+.check_form_field_main .mat-form-field-infix .check_form_field {
+  width: 50%;
+  float: left;
+}
+.check_form_field_main .mat-form-field-infix .check_form_field .label_title {
+  display: inline-block;
+  min-width: 100px;
+  width: auto;
+    @include media-breakpoint('xs') {
+        display: inline-block;
+        width: 100%;
+    }
+}
+.check_form_field_main .mat-form-field-infix .check_form_field .inpt_field {
+  display: inline-block;
+  width: auto;
+    @include media-breakpoint('xs') {
+        display: inline-block;
+        width: 100%;
+    }
+}
+.check_form_field_main .mat-form-field-infix .check_form_field .inpt_field .mat-radio-button {
+  margin: 0 10px;
+    @include media-breakpoint('xs') {
+        margin: 3px 10px !important;
+        display: inline-block;
+        width: 100%;
+    }
+}
+
+.check_form_field_main .mat-form-field-infix .check_form_field .label_title label {
+  font-size: 16px;
+  color: #000;
+}
+
+/*-------Web-End-by-Pramod----------*/
+
+/*-------Responsive-Start-by-Pramod----------*/
+
+@media screen and (max-width:979px){
+  
+ .check_form_field_main .mat-form-field-infix .check_form_field{
+    width: 100%;
+    float: left;
+    margin: 5px 0;
+}
+
+}
+
+@media screen and (max-width:767px){
+
+.int_form_field_main .mat-form-field{
+  width: 100%;
+}
+
+}
+
+
+
+/*-------Responsive-End-by-Pramod----------*/
+
+
+}

@@ -1,0 +1,188 @@
+<div class="container-scroller">
+    <!-- navbar -->
+    <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo" href="index.html"><img src="assets/images/ecubix-logo.svg"
+                    alt="logo" /></a>
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="assets/images/ecubix-logo-mini.jpeg"
+                    alt="logo" /></a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+            <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item nav-profile ">
+                    <a class="nav-link" [routerLink]="['/patient']">
+                        <div class="nav-profile-text">
+                            <p class="mb-1 text-black font-weight-normal text-white">Patient Registration</p>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="nav-item nav-profile ">
+                    <a class="nav-link" [routerLink]="['/patient/login']">
+                        <div class="nav-profile-text ">
+                            <p class="mb-1 text-black font-weight-normal text-white">Patient Login</p>
+                        </div>
+                    </a>
+                </li>
+
+                <li class="nav-item nav-profile ">
+                    <a class="nav-link" [routerLink]="['/doctor/login']">
+                        <div class="nav-profile-text ml-1">
+                            <p class="mb-1 text-black font-weight-normal text-white">Doctor Login</p>
+                        </div>
+                    </a>
+                </li>
+
+
+                <li class="nav-item nav-profile ">
+                    <a class="nav-link" [routerLink]="['/mr/login']">
+                        <div class="nav-profile-text ml-1">
+                            <p class="mb-1 text-black font-weight-normal text-white">MR Login</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center text-white " type="button"
+                data-toggle="offcanvas">
+                <span class="mdi mdi-menu"></span>
+            </button>
+        </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas d-md-none" id="sidebar">
+            <ul class="nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="menu-title">Patient Registration</span>
+
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="menu-title">Patient Login</span>
+
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="menu-title">Doctor Login</span>
+
+                    </a>
+                </li>
+
+
+
+
+
+
+
+
+            </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel w-100">
+            <div class="content-wrapper">
+
+                <div class="page-header bg-primary ">
+                    <h3 class="page-title text-center text-white py-3 w-100 radius-4">Ecubix Telemedicine </h3>
+
+                </div>
+
+
+
+
+                <div class="row dashboardcard">
+
+                    <div class="col-4">
+                        <img src="assets/images/doctor-graphic.svg" class="img-fluid" alt="logo">
+
+                    </div>
+                    <div class="col-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6 stretch-card grid-margin">
+                                        <div class="card bg-primary text-white">
+                                            <div class="card-body">
+                                                <h4
+                                                    class="custom-font-size-custom font-weight-normal mb-3 d-flex align-items-center justify-content-between">
+                                                    {{landingcounter?.HospitalCount}} <i
+                                                        class="mdi mdi-hospital mdi-30px float-right"></i>
+                                                </h4>
+                                                <h2 class="mb-1" style="font-size: 20px;">Total Hospital Registered</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6 stretch-card grid-margin">
+                                        <div class="card bg-secondary text-white">
+                                            <div class="card-body">
+                                                <h4
+                                                    class=" custom-font-size-custom font-weight-normal mb-3 d-flex align-items-center justify-content-between">
+                                                    {{landingcounter?.DoctorCount}}<i
+                                                        class="fa fa-user-md mdi-24px float-right"></i>
+                                                </h4>
+                                                <h2 class="mb-1" style="font-size: 20px;">Total Doctor Registered</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 stretch-card grid-margin">
+                                        <div class="card bg-success text-white">
+                                            <div class="card-body">
+
+                                                <h4
+                                                    class="custom-font-size-custom font-weight-normal mb-3 d-flex align-items-center justify-content-between">
+                                                    {{landingcounter?.PatientsCount}}<i
+                                                        class="mdi mdi-human-male mdi-30px float-right"></i>
+                                                </h4>
+                                                <h2 class="mb-1" style="font-size: 20px;">Total Patients Registered</h2>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 stretch-card grid-margin">
+                                        <div class="card bg-dark text-white">
+                                            <div class="card-body">
+
+                                                <h4
+                                                    class="custom-font-size-custom font-weight-normal mb-3 d-flex align-items-center justify-content-between">
+                                                    {{landingcounter?.AppointmentsCount}}<i
+                                                        class="mdi mdi-prescription mdi-30px float-right"></i>
+                                                </h4>
+                                                <h2 class="mb-1" style="font-size: 20px;"> Total Appointments Done</h2>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer class="footer">
+                <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                    <span class=" text-center text-sm-left d-block d-sm-inline-block"> © 2020 All rights
+                        reserved.</span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Powered by <img
+                            src="assets/images/ecubix-logo.svg" width="76px" alt="logo" class="ml-2"></span>
+                </div>
+
+
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>

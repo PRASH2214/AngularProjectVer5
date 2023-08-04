@@ -1,0 +1,778 @@
+<div class="content-wrapper" *ngIf="previewbtn">
+  <div class="page-header">
+    <h3 class="page-title"> Doctor Consultation </h3>
+  </div>
+
+  <div class="row dashboardcard">
+
+    <div class="col-md-12 order-sm-1">
+
+
+      <!--Patient Info & Details -->
+      <div class="row dashboardcard">
+        <div class="col-md-12 grid-margin stretch-card">
+          <div class="card consulttab">
+            <div class="card-body ">
+
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home-1" role="tab"
+                    aria-controls="home" aria-selected="false">Patient Information</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile-1" role="tab"
+                    aria-controls="profile" aria-selected="true">Detailed Examination</a>
+                </li>
+
+              </ul>
+              <div class="tab-content">
+                <div class="tab-pane fade active show" id="home-1" role="tabpanel" aria-labelledby="home-tab">
+
+
+
+                  <div class="card shadow-sm bg-light mt-4">
+                    <div class="card-header header-sm" role="tab" id="heading-13">
+                      <h2 class="mb-0 card-title my-1">
+                        <a data-toggle="collapse" href="#collapse-11" aria-expanded="true" aria-controls="collapse-11"
+                          class=""> Patient Name:
+                          {{consultationinfo.patientTeleConsultationDetail?.firstName}}
+                          {{consultationinfo.patientTeleConsultationDetail?.lastName}} </a>
+                      </h2>
+                    </div>
+                    <div id="collapse-11" class="collapse show" role="tabpanel" aria-labelledby="heading-11"
+                      data-parent="#accordion-5" style="">
+                      <div class="card-body">
+                        <div class=" row ">
+
+                          <div class="col-md-3 mb-4 ">
+                            <strong>Patient Id: <span
+                                class="text-secondary">{{consultationinfo.patientTeleConsultationDetail?.patientReferenceNumber}}
+                              </span></strong>
+                          </div>
+
+                          <div class="col-md-3 mb-4 ">
+                            <strong> Gender:
+                              <span class="text-secondary"
+                                *ngIf="consultationinfo.patientTeleConsultationDetail?.genderId==1"> Male</span>
+                              <span class="text-secondary"
+                                *ngIf="consultationinfo.patientTeleConsultationDetail?.genderId==2">Female</span>
+                              <span class="text-secondary"
+                                *ngIf="consultationinfo.patientTeleConsultationDetail?.genderId==3">TRANSGENDER</span>
+
+
+                            </strong>
+                          </div>
+
+                          <div class="col-md-3 mb-4 ">
+                            <strong>Age: <span class="text-secondary">{{showAge}} yrs</span></strong>
+                          </div>
+                          <div class="col-md-3 mb-4 ">
+                            <strong> <span class="text-secondary">Mobile:
+                                {{consultationinfo.patientTeleConsultationDetail?.mobile}}</span></strong>
+                          </div>
+                        </div>
+                        <div class=" row  d-flex align-items-center ">
+
+                          <div class="col-md-4 form-group">
+                            <label for="exampleInputUsername1"> <strong>Health Records</strong> <small
+                                class="text-gray">
+                                Uploaded by clients</small></label>
+
+                          </div>
+                          <div class="col-md-8  ">
+                            <ol class="pattachment ">
+                              <li class=" d-flex align-items-center"
+                                *ngFor="let doclist of consultationinfo.patientDocumentReg;"> <a
+                                  (click)="getimage(doclist.filePath);" style="cursor:pointer"
+                                  class="text-info">{{doclist.fileName}} <i class="mdi mdi-download"> </i>
+                                </a> </li>
+
+                              <ol>
+                              </ol>
+                            </ol>
+                          </div>
+                        </div>
+
+
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="card shadow-sm bg-light mt-4">
+
+
+
+                    <div class="card shadow-sm bg-light mt-4">
+                      <div class="card-header header-sm" role="tab" id="heading-12">
+                        <h2 class="mb-0 card-title my-1">
+                          <a data-toggle="collapse" href="#collapse-12" aria-expanded="true" aria-controls="collapse-12"
+                            class=""> Allergy </a>
+                        </h2>
+                      </div>
+                      <div id="collapse-12" class="collapse show" role="tabpanel" aria-labelledby="heading-12"
+                        data-parent="#accordion-5" style="">
+                        <div class="card-body">
+
+                          <div class=" row ">
+
+                            <div class="col-md-6 form-group">
+                              <label for="exampleInputUsername1">Allery Name</label>
+                              <input type="text" class="form-control" name="AllergyName" [(ngModel)]="AllergyName" UserNameOnly
+                                placeholder="Please Enter Allergy" maxlength="250">
+                            </div>
+
+                            <div class="col-md-6 form-group">
+
+                              <label for="select1">Still have allergy?<span style="color: red;">*</span></label>
+                              <select class="custom-select" [(ngModel)]="Still_Have" name="Still_Have">
+                                <option value="True">Yes</option>
+                                <option value="False">No</option>
+
+                              </select>
+
+
+                            </div>
+
+
+                            <div class="col-md-6 form-group">
+                              <label for="exampleInputUsername1">Duration<span class="text-danger">*</span></label>
+                              <select class="custom-select" name="DurationId" [(ngModel)]="DurationId"
+                                (change)="onDurationChange($event)">
+
+                                <option value="Less than three months"> Less than three months</option>
+                                <option value="Three to six months">Three to six months</option>
+                                <option value="Six to twelve months">Six to twelve months</option>
+                                <option value="More than twelve months">More than twelve months</option>
+                              </select>
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                              <label for="exampleInputUsername1">Severity<span class="text-danger">*</span></label>
+                              <select class="custom-select" name="SeverityId" [(ngModel)]="SeverityId"
+                                (change)="onSeverityChange($event)">
+
+                                <option value="Mild">Mild</option>
+                                <option value="Moderate">Moderate</option>
+                                <option value="Severe">Severe</option>
+                                <option value="Trivial">Trivial</option>
+                                <option value="Very severe">Very severe</option>
+                              </select>
+
+                            </div>
+                            <div class="col-md-6 form-group">
+                              <label for="exampleInputUsername1 " class="mb-0"> Note</label>
+
+                              <textarea [(ngModel)]="allergynote" name="allergynote" class="form-control" rows="3"
+                                maxlength="500" Ignorespecialchar></textarea>
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                              <div class=" d-flex align-items-left  justify-content-between mb-2">
+
+
+
+                                <button type="button" class="btn  btn-primary btn-sm" (click)="addallergy()"><i
+                                    class="mdi mdi-plus"> </i>
+                                  ADD</button>
+                              </div>
+
+                            </div>
+
+
+                          </div>
+
+                          <div class=" row ">
+                            <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12 col-12 mt-2">
+                              <div class="table-responsive">
+                                <table id="mytable" class="table table-striped">
+                                  <thead class="grid-header">
+                                    <tr>
+                                      <th>Allergy</th>
+                                      <th>Duration</th>
+                                      <th>Severity</th>
+                                      <th>Still have allergy</th>
+                                      <th></th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+
+
+                                    <tr *ngFor="let alergweg of Allergyselectedlst" class="grid-cell-1">
+                                      <td>{{alergweg.name}}</td>
+
+                                      <td>{{alergweg.duration}}</td>
+                                      <td>{{alergweg.severityType}}</td>
+                                      <td>{{alergweg.isStill === True ? 'Yes' : 'No'}}</td>
+                                      <td><i class="fa fa-trash" aria-hidden="true"
+                                          (click)="onDeleteallergyItem(alergweg)"></i>
+                                      </td>
+                                    </tr>
+
+
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+
+
+                </div>
+                <div class="tab-pane fade " id="profile-1" role="tabpanel" aria-labelledby="profile-tab">
+
+
+                  <div class="accordion accordion-solid-content" id="accordion-5" role="tablist">
+                    <div class="card shadow-sm bg-light mt-4">
+                      <div class="card-header header-sm" role="tab" id="heading-13">
+                        <h2 class="mb-0 card-title my-1">
+                          <a data-toggle="collapse" href="#collapse-13" aria-expanded="true" aria-controls="collapse-13"
+                            class=""> Examination </a>
+                        </h2>
+                      </div>
+                      <div id="collapse-13" class="collapse show" role="tabpanel" aria-labelledby="heading-13"
+                        data-parent="#accordion-5" style="">
+                        <div class="card-body">
+                          <div class=" row ">
+
+                            <div class="col-md-12 mb-1">
+                              General Information
+                            </div>
+                            <div class="col-md-4 form-group ">
+
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" [(ngModel)]="Diabetes"
+                                    [name]="Diabetes"> H/O Diabetes <i class="input-helper"></i><i
+                                    class="input-helper"></i>
+                                  <i class="input-helper"></i></label>
+                              </div>
+                            </div>
+                            <div class="col-md-4 form-group mb-1">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" [(ngModel)]="Smoking"
+                                    [name]="Smoking"> H/O Smoking <i class="input-helper"></i><i
+                                    class="input-helper"></i>
+                                  <i class="input-helper"></i></label>
+                              </div>
+                            </div>
+                            <div class="col-md-4 form-group mb-1">
+                              <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" [(ngModel)]="Alcohol"
+                                    [name]="Alcohol"> H/O Alcoholism <i class="input-helper"></i><i
+                                    class="input-helper"></i><i class="input-helper"></i></label>
+
+                              </div>
+                            </div>
+
+                            <div class="col-md-12 form-group">
+                              <label for="exampleInputUsername1">General Information</label>
+                              <textarea [(ngModel)]="generalExamination" name="generalExamination" class="form-control"
+                                maxlength="250" rows="3" Ignorespecialchar></textarea>
+                            </div>
+
+
+
+                          </div>
+
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card card bg-light">
+                      <div class="card-header header-sm" role="tab" id="heading-14">
+                        <h2 class="mb-0 card-title my-1">
+                          <a class="collapsed" data-toggle="collapse" href="#collapse-14" aria-expanded="false"
+                            aria-controls="collapse-14">
+                            Provisional Diagnosis </a>
+                        </h2>
+                      </div>
+                      <div id="collapse-14" class="collapse" role="tabpanel" aria-labelledby="heading-14"
+                        data-parent="#accordion-5">
+                        <div class="card-body">
+
+
+                          <div class="row">
+                            <div class="col-md-6 form-group">
+                              <label for="exampleInputUsername1">Diagnosis</label>
+                              <input type="text" class="form-control" name="DiagnosisName" [(ngModel)]="DiagnosisName"
+                                placeholder="Please Enter Diagnosis">
+
+                              <div
+                                *ngFor="let prowidg of DiagnosisNamelst; let index =index;let isOdd=odd;let isEven=even"
+                                [class.odd]="isOdd" [class.even]="isEven">
+                                <span class="pd-chip-text">{{prowidg.name}}</span>
+                                <span class="pd-closebtn" onclick="this.parentElement.style.display='none'"
+                                  (click)="onDeleteprobItem(prowidg)">&times;</span>
+                              </div>
+
+                            </div>
+                            <div class="col-md-0 form-group">
+
+                              <i class="fa fa-plus-circle mt-4" style="font-size:36px" (click)="AddDiagnosis()"></i>
+                            </div>
+
+
+                          </div>
+                          <div class=" row ">
+
+
+
+                            <div class="col-md-6 form-group">
+                              <label for="exampleInputUsername1">Medicine<span class="text-danger">*</span></label>
+                              <select class="custom-select" name="MedicineId" [(ngModel)]="MedicineId">
+                                <option value="" selected>Select</option>
+                                <option *ngFor="let medi of rxlist" value="{{medi.MedicineId}}">
+                                  {{medi.MedicineName}}</option>
+                              </select>
+
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                              <label for="exampleInputUsername1">Frequency<span class="text-danger">*</span></label>
+                              <select class="custom-select" [(ngModel)]="Frequency" name="Frequency">
+                                <option value="" selected>Select</option>
+                                <option value="BD">BD</option>
+                                <option value="HS">HS</option>
+                                <option value="OD">OD</option>
+                                <option value="QID">QID</option>
+                                <option value="SOS">SOS</option>
+                                <option value="TDS">TDS</option>
+                                <option value="TSF">TSF</option>
+                              </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                              <label for="exampleInputUsername1">Dosage<span class="text-danger">*</span></label>
+                              <select class="custom-select" [(ngModel)]="Dosage" name="Dosage">
+
+                                <option value="" selected>Select</option>
+                                <option *ngFor="let dosage of Dosagelist" value="{{dosage.DosageValue}}">
+                                  {{dosage.DosageValue}}</option>
+                              </select>
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                              <label for="exampleInputUsername1">Dosage Type<span class="text-danger">*</span></label>
+                              <select class="custom-select" [(ngModel)]="Dosagetype" name="Dosagetype">
+                                <option value="" selected>Select</option>
+                                <option *ngFor="let dosagetype of DosageTypelist" value="{{dosagetype.Name}}">
+                                  {{dosagetype.Name}}</option>
+                              </select>
+                            </div>
+
+
+
+                            <div class="col-md-6 form-group">
+                              <label for="exampleInputUsername1">Duration<span class="text-danger">*</span></label>
+                              <select class="custom-select" [(ngModel)]="Durationtype" name="Durationtype">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                              </select>
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                              <label for="exampleInputUsername1">Duration<span class="text-danger">*</span></label>
+                              <select class="custom-select" [(ngModel)]="Duration" name="Duration">
+                                <option value="" selected="selected">Select</option>
+                                <option value="Days">Days</option>
+                                <option value="Week">Week</option>
+                                <option value="Month">Month</option>
+                              </select>
+                            </div>
+
+
+                            <div class="col-md-6 form-group">
+
+                              <label for="exampleInputUsername1 " class="mb-0 mr-2"> Note</label><br />
+
+                              <textarea [(ngModel)]="medicainenotes" name="medicainenotes" class="form-control"
+                                maxlength="500" rows="3" Ignorespecialchar></textarea>
+
+
+                            </div>
+                            <div class="col-md-12 form-group">
+                              <div class=" d-flex align-items-left  justify-content-between mb-2">
+                                <button type="button" class="btn  btn-primary btn-sm" (click)="addrx()"><i
+                                    class="mdi mdi-plus">
+                                  </i> ADD</button>
+                              </div>
+
+                            </div>
+
+                          </div>
+
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="table-responsive">
+                                <table class="table table-striped table-bordered ">
+
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th> Sr. no </th>
+                                      <th> Mecidine name </th>
+                                      <th> Dose </th>
+                                      <th> Duration </th>
+                                      <th> Frequency taken </th>
+
+                                      <th> Action </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let rx of arryrxlist; let index =index;let i=index">
+                                      <td>{{i + 1}}</td>
+                                      <td>{{rx.medicineName}}</td>
+                                      <td>{{rx.dosage}}</td>
+                                      <td>{{rx.duration}}</td>
+                                      <td>{{rx.frequency}}</td>
+
+                                      <td><i class="fa fa-trash" aria-hidden="true" (click)="onDeleterxItem(rx)"></i>
+                                      </td>
+                                    </tr>
+
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row mt-4">
+                            <div class="col-md-6 form-group  mb-3">
+
+                              <label for="exampleInputUsername1 " class="mb-0 mr-2"> Advice</label><br />
+
+                              <textarea [(ngModel)]="advice" name="advice" class="form-control" maxlength="500"
+                                rows="3" Ignorespecialchar></textarea>
+
+
+
+                            </div>
+                          </div>
+
+
+
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+
+
+
+
+
+
+                </div>
+
+
+
+                <!-- <div class="card-footer text-center">
+                  <button type="submit" class="btn btn-primary mr-2">Submit</button> <button
+                    class="btn btn-secondary">Cancel</button>
+
+                </div> -->
+                <div class="card-footer text-center">
+                  <button type="submit" class="btn btn-primary mr-2" (click)="open(content)">Preview</button>
+                  <button class="btn btn-secondary" (click)="Consultationsend()">Close Consultation</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+
+      <!-- Patient Info & Details ends-->
+    </div>
+
+  </div>
+
+
+
+
+</div>
+
+
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      Preview
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+
+      <span aria-hidden="true">
+        ×
+      </span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="content-wrapper">
+      <div class="row dashboardcard">
+        <div class="col-md-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-header header-sm">
+              <h2 class="card-title my-1">Prescription</h2>
+            </div>
+            <div class="card-body">
+
+              <div class="row  ">
+                <div class="col-md-6 col-12 ">
+                  Date: {{dispdate| date: 'dd-MM-yyyy'}}
+                </div>
+                <div class="col-md-6 col-12 text-right"> Time:
+                  {{dispdate| date:'hh:mm a' }}
+
+                </div>
+                <div class=" col-12">
+                  <hr>
+
+                </div>
+              </div>
+
+
+              <div class="row status-switch">
+                <div class="col-md-6 col-12">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td class=" border-0">
+                          Consultation id
+                        </td>
+                        <td class=" border-0"><span class="mr-2">:</span>
+                          {{consultationinfo.patientTeleConsultationDetail?.patientTeleConsultationId}}</td>
+                      </tr>
+
+                      <tr>
+                        <td class=" border-0">
+                          Patient id
+                        </td>
+                        <td class=" border-0"><span
+                            class="mr-2">:</span>{{consultationinfo.patientTeleConsultationDetail?.patientReferenceNumber}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class=" border-0">
+                          Patient name
+                        </td>
+                        <td class=" border-0"><span class="mr-2">:</span>
+                          {{consultationinfo.patientTeleConsultationDetail?.firstName}}
+                          {{consultationinfo.patientTeleConsultationDetail?.lastName}}</td>
+                      </tr>
+                      <tr>
+                        <td class=" border-0">
+                          Address
+                        </td>
+                        <td class=" border-0"> <span
+                            class="mr-2">:</span>{{consultationinfo.patientTeleConsultationDetail?.patientAddress}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+                <div class="col-md-6 col-12 ">
+
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td class=" border-0">
+                          Age
+                        </td>
+                        <td class=" border-0"><span class="mr-2">:</span> {{showAge}} yrs</td>
+                      </tr>
+
+                      <tr>
+                        <td class=" border-0">
+                          Gender
+                        </td>
+                        <td class=" border-0"><span class="mr-2">:</span> <span
+                            *ngIf="consultationinfo.patientTeleConsultationDetail?.genderId==1"> Male</span>
+                          <span *ngIf="consultationinfo.patientTeleConsultationDetail?.genderId==2">Female</span>
+                          <span *ngIf="consultationinfo.patientTeleConsultationDetail?.genderId==3">TRANSGENDER</span>
+
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class=" border-0">
+                          Mobile
+                        </td>
+                        <td class=" border-0"><span class="mr-2">:</span>
+                          {{consultationinfo.patientTeleConsultationDetail?.mobile}}</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+
+
+              </div>
+              <div class="row">
+
+                <div class="col-12">
+                  <h4 class="card-title border-bottom pb-2">General Information</h4>
+
+                </div>
+
+                <div class="col-12 col-md-6">
+
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <td class=" border-0">
+                          H/O Diabetes
+                        </td>
+                        <td class=" border-0"><span class="mr-2">:</span> {{isDiabetic=== true ? 'Yes' : 'No'}}</td>
+                      </tr>
+
+                      <tr>
+                        <td class=" border-0">
+                          H/O Smoking
+                        </td>
+                        <td class=" border-0"><span class="mr-2">:</span> {{isSmoker === true ? 'Yes' : 'No'}}</td>
+                      </tr>
+                      <tr>
+                        <td class=" border-0">
+                          H/O Alcoholism
+                        </td>
+                        <td class=" border-0"><span class="mr-2">:</span> {{isAlcoholic === true ? 'Yes' : 'No'}}</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+
+                </div>
+
+              </div>
+              <div class="row no-gutters" *ngIf="Allergyselectedlst?.length > 0">
+
+                <div class="col-md-12 col-sm-12 col-xl-12 col-lg-12 col-12 mt-2">
+                  <div class="table-responsive">
+                    <table id="mytable" class="table table-striped">
+                      <thead class="grid-header">
+                        <tr>
+                          <th>Allergy</th>
+                          <th>Duration</th>
+                          <th>Severity</th>
+                          <th>Still have allergy</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+
+                        <tr *ngFor="let alergweg of Allergyselectedlst" class="grid-cell-1">
+                          <td>{{alergweg.name}}</td>
+
+                          <td>{{alergweg.duration}}</td>
+                          <td>{{alergweg.severityType}}</td>
+                          <td>{{alergweg.isStill === True ? 'Yes' : 'No'}}</td>
+                        </tr>
+
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+              </div>
+              <hr>
+              <div class="row no-gutters " *ngIf="DiagnosisNamelst?.length > 0">
+                <div class="col-12 col-md-12 ">
+                  <span class="d-block mb-2 text-primary shadow-0 font-weight-bold">Provisisonal Diagnosis </span>
+                  <div *ngFor="let prowidg of DiagnosisNamelst;">
+                    <span class="pd-chip-text">{{prowidg.name}}</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <hr>
+              <div class="row no-gutters " *ngIf="arryrxlist?.length > 0">
+                <div class="col-12 col-md-12  ">
+                  <span class="d-block mb-2 text-primary shadow-0 font-weight-bold">Prescription </span>
+
+                </div>
+                <div class="col-md-12">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-bordered ">
+
+                      <thead class="thead-dark">
+                        <tr>
+                          <th> Sr. no </th>
+                          <th> Mecidine name </th>
+                          <th> Dose </th>
+                          <th> Duration </th>
+                          <th> Frequency taken </th>
+
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let rx of arryrxlist; let index =index;let i=index">
+                          <td>{{i + 1}}</td>
+                          <td>{{rx.medicineName}}</td>
+                          <td>{{rx.dosage}}</td>
+                          <td>{{rx.duration}}</td>
+                          <td>{{rx.frequency}}</td>
+
+
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+
+              <div class="row no-gutters ">
+                <div class="col-12 col-md-12 ">
+                  <span class="d-block mb-2 text-primary shadow-0 font-weight-bold">Advice </span>
+                  {{advice}}
+                  <p></p>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+</ng-template>

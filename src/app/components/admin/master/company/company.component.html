@@ -1,0 +1,103 @@
+<div class="content-wrapper">
+
+  <div class="page-header">
+    <h3 class="page-title"> Company </h3>
+
+  </div>
+  <div class="row dashboardcard">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+
+
+          <div class="row status-switch">
+
+
+
+
+            <div class="col-md-12 col-12 mb-3">
+
+              <a class="btn btn-secondary float-right btn-icon-text w-m-100" routerLink="/admin/company/add"><i
+                  class=" mdi mdi-plus"></i> Add</a>
+
+
+            </div>
+
+
+
+
+
+
+
+
+          </div>
+          <div class="row">
+
+            <div class="col-12">
+              <div class="table-responsive">
+                <table class="table table-striped ">
+
+                  <thead class="thead-dark">
+                    <tr>
+                      <th> Sr. no </th>
+
+                      <th> Company Name </th>
+                      <th> Status </th>
+                      <th> Action </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      *ngFor="let row of allcompanylst | paginate:config;let index =index;let isOdd=odd;let isEven=even;let i=index"
+                      [class.table-active]="isOdd" [class.table-active1]="isEven">
+                      <td class="py-1">
+                        {{i + 1}}
+                      </td>
+                      <td>{{row.CompanyName}} </td>
+
+                      <td>{{row.Status==1 ? "Active":"Inactive"}}</td>
+                      <td>
+
+                        <a class="btn btn-secondary btn-sm" [routerLink]="['/admin/company/edit', row.CompanyId]"><i
+                            class="fa fa-pencil-square-o mr-1" aria-hidden="true"></i>Edit</a>
+                        <a class="btn btn-info btn-sm ml-1" (click)="ondelete(row)"><i class="fa fa-trash mr-1"
+                            aria-hidden="true"></i>Delete</a>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="row d-flex align-items-center">
+            <div class="col-sm-12 col-md-5 mb-1">
+              <div class="dataTables_info" id="order-listing_info" role="status" aria-live="polite"></div>
+            </div>
+            <div class="col-sm-12 col-md-7">
+              <ul class="pagination float-right pagination-success mb-0">
+
+                <li class="page-item">
+                  <pagination-controls (pageChange)="pageChanged($event)" style="text-align: center;">
+                  </pagination-controls>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>

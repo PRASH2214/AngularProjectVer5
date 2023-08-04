@@ -1,0 +1,73 @@
+<div class="content-wrapper">
+  <div class="page-header">
+    <h3 class="page-title"> Doctor Appointment </h3>
+  </div>
+
+  <div class="row dashboardcard">
+    <div class="col-md-12 grid-margin order-sm-12">
+      <!-- Video CallScreen  Start -->
+
+      <div class="card">
+        <div class="card-body">
+
+          <div class="row dashboardcard">
+            <div class="col-md-8 mb-2  drvideo">
+              <div class="drvideobox text-center " id="divcontainer" style="width:100%;height:350px;">
+                <!-- <img src="assets/images/doctors-male.png" width="450px" class="img-fluid imgvid" alt="logo"> -->
+              </div>
+            </div>
+            <div class="col-md-4  ">
+              <div class="chat_window shadow-sm">
+                <div class="top_menu d-none">
+                  <div class="buttons">
+                    <div class="button close"></div>
+                    <div class="button minimize"></div>
+                    <div class="button maximize"></div>
+                  </div>
+                  <div class="title">Chat</div>
+                </div>
+                <ul class="messages yscroll">
+                  <li *ngFor="let row of chatmessagelist"
+                    [ngClass]="row.send==1 ? 'message right appeared' : 'message left appeared'">
+                    <div class="avatar"></div>
+                    <div class="text_wrapper">
+                      <div class="text">{{row.messagetext}}</div>
+                    </div>
+                  </li>
+                </ul>
+                <div class="bottom_wrapper clearfix">
+                  <div class="message_input_wrapper">
+                    <input class="message_input" (keydown.enter)="checkmessage()" [(ngModel)]="Patientmessage"
+                      placeholder="Type your message here..."></div>
+                  <div class="send_message" (click)="checkmessage()">
+                    <div class="icon"> <i class="mdi mdi-send"> </i> </div>
+                    <div class="text d-none">Send</div>
+                  </div>
+                </div>
+              </div>
+              <div class="message_template">
+                <li class="message">
+                  <div class="avatar">
+                  </div>
+                  <div class="text_wrapper">
+                    <div class="text"></div>
+                  </div>
+                </li>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Video CallScreen  ends -->
+    </div>
+
+
+  </div>
+
+
+
+
+</div>

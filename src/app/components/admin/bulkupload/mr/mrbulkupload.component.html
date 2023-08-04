@@ -1,0 +1,176 @@
+<div class="content-wrapper">
+
+  <div class="page-header">
+    <h3 class="page-title">MR Bulk Upload</h3>
+
+  </div>
+  <div class="row dashboardcard">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+
+
+        <div class="card-body">
+
+          <div class="col-md-12 text-right">
+            <a href="assets/excel/MR_Format.xlsx">Sample Excel File</a>
+          </div>
+
+
+
+          <div class="col-md-6 form-group">
+
+            <div class="input-group col-xs-12">
+              <input type="file" #myInput class="form-control file-upload-info" placeholder="Upload Image"
+                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                (change)="onFileChange($event)" />
+
+            </div>
+            <label id="confirm_password-error" class="error mt-2 text-danger" for="confirm_password">
+              <small class="w-100 d-block mb-1"> 1. Format xlsx., .xls</small>
+              <small class="w-100 d-block mb-1"> 2. Size less than 5MB</small>
+
+            </label>
+            <div class="input-group col-xs-12">
+
+              <span class="input-group-append">
+                <button class="file-upload-browse btn btn-primary" (click)="checkdata()" type="button">Check
+                  Data</button>
+              </span>
+
+              <span class="input-group-append ml-2" [hidden]="!saveshow">
+                <button class="file-upload-browse btn btn-primary" (click)="Save()" type="button">Save</button>
+              </span>
+
+
+              <span class="input-group-append ml-2">
+                <button class="file-upload-browse btn btn-primary" (click)="Decline()" type="button">Decline</button>
+              </span>
+
+            </div>
+            <div class="clearfix"> </div>
+
+
+
+          </div>
+
+
+
+
+
+
+        </div>
+        <hr>
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+
+    <div class="table-responsive" [hidden]="errorlistshow">
+      <table class="table table-striped ">
+
+        <thead class="thead-dark">
+          <tr>
+
+            <th> Sr. no </th>
+            <th>Reason</th>
+
+            <th> First Name </th>
+            <th> Middle Name </th>
+            <th> Last Name </th>
+            <th> Company Name </th>
+            <th>State Name</th>
+            <th>District Name </th>
+            <th> City Name </th>
+            <th> MR Address </th>
+            <th> License Number </th>
+            <th> Gender </th>          
+            <th> Mobile </th>
+            <th> DOB </th>
+            <th> PinCode </th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of errorlist ;let index =index;let isOdd=odd;let isEven=even;let i=index">
+            <td class="py-1" [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              {{i + 1}}
+            </td>
+
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">{{row.reason}} </td>
+
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.firstName" style="width: 200px;" />
+            </td>
+
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.middleName" style="width: 200px;" />
+            </td>
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.lastName" style="width: 200px;" />
+            </td>
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.companyName" style="width: 200px;" />
+            </td>
+
+
+
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.stateName" style="width: 200px;" />
+            </td>
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+
+              <input type="text" class="form-control" [(ngModel)]="row.districtName" style="width: 200px;" />
+            </td>
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.cityName" style="width: 200px;" />
+
+            </td>
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+
+              <input type="text" class="form-control" [(ngModel)]="row.mrAddress" style="width: 200px;" />
+            </td>
+
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.mrLicenseNumber" style="width: 200px;" />
+            </td>
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+
+              <input type="text" class="form-control" [(ngModel)]="row.strGender" style="width: 200px;" />
+            </td>
+          
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.mobile" style="width: 200px;" maxlength="10" />
+            </td>
+
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.strDOB" style="width: 200px;" />
+            </td>
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.pinCode" style="width: 200px;" />
+            </td>
+
+
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+</div>

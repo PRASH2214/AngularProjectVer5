@@ -1,0 +1,158 @@
+<div id="tableauReport" class="page-layout simple fullwidth" fxLayout="column">
+  <div [ngClass]="classname" fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="black-fg" fxLayout="row" fxLayoutAlign="start center" fxHide>
+        <mat-icon class="secondary-text s-18">home</mat-icon>
+        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+        <span class="secondary-text">Dashboard</span>
+      </div>
+      <div class="report_title h1 mt-5">{{rptName}}</div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center start">
+     
+    </div>
+  </div>
+  <div class="container">
+    <form [formGroup]="MenuForm">
+      <div class="row">
+        <div class="col-20">
+          <label for="varMenuCode">Menu Code</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;" type="text" formControlName="varMenuCode" name="varMenuCode"
+            onKeyPress="if(this.value.length==50) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varMenuCode.errors }">
+          <div *ngIf="submitted && f.varMenuCode.errors" class="invalid-feedback">
+            <div *ngIf="f.varMenuCode.errors.required" style="color: red;">Menu code is required</div>
+          </div>
+        </div>
+        <div class="col-20">
+          <label for="varMenuName">Menu Name</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;" type="text" formControlName="varMenuName" name="varMenuName"
+            onKeyPress="if(this.value.length==100) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varMenuName .errors }">
+          <div *ngIf="submitted && f.varMenuName.errors" class="invalid-feedback">
+            <div *ngIf="f.varMenuName.errors.required" style="color: red;">Menu name is required</div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-20">
+          <label for="varMenuType">Menu Type</label>
+        </div>
+        <div class="col-25">
+          <select style="width: 80%;" formControlName="varMenuType">
+            <option value="">Select</option>
+            <option *ngFor="let MenuType of MenuTypeLst" value={{MenuType.varMenuType}}>
+              {{MenuType.varMenuType}}
+            </option>
+          </select>
+          <div *ngIf="submitted && f.varMenuType.errors" class="invalid-feedback">
+            <div *ngIf="f.varMenuType.errors.required" style="color: red;">Menu Type is required</div>
+          </div>
+        </div>
+        <div class="col-20">
+          <label for="ref_ParentMenuGLCode">Parent Menu</label>
+        </div>
+        <div class="col-25">
+          <select style="width: 80%;" formControlName="ref_ParentMenuGLCode">
+            <option value="0">Select</option>
+            <option *ngFor="let Menu of ParentMenuLst" value={{Menu.intGlCode}}>
+              {{Menu.varMenuName}}
+            </option>
+          </select>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-20">
+          <label for="varURL">Menu URL</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;" type="text" formControlName="varURL" name="varURL"
+            onKeyPress="if(this.value.length==1000) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varURL .errors }">
+          <div *ngIf="submitted && f.varURL.errors" class="invalid-feedback">
+            <div *ngIf="f.varURL.errors.required" style="color: red;">URL is required</div>
+          </div>
+        </div>
+        <div class="col-20">
+          <label for="varIconPath ">Icon Path</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;" type="text" formControlName="varIconPath" name="varIconPath"
+            onKeyPress="if(this.value.length==100) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varIconPath .errors }">
+          <div *ngIf="submitted && f.varIconPath.errors" class="invalid-feedback">
+            <div *ngIf="f.varIconPath.errors.required" style="color: red;">IconPath is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-20">
+          <label for="varTagList ">Tag List</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;" type="text" formControlName="varTagList" name="varTagList"
+            [ngClass]="{ 'is-invalid': submitted && f.varTagList .errors }">
+          <div *ngIf="submitted && f.varTagList.errors" class="invalid-feedback">
+            <div *ngIf="f.varTagList.errors.required" style="color: red;">TagList is required</div>
+          </div>
+        </div>
+        <div class="col-20">
+          <label for="varDisplayOrder ">Display Order</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;" type="text" formControlName="varDisplayOrder" name="varDisplayOrder"
+            [ngClass]="{ 'is-invalid': submitted && f.varDisplayOrder .errors }">
+          <div *ngIf="submitted && f.varDisplayOrder.errors" class="invalid-feedback">
+            <div *ngIf="f.varDisplayOrder.errors.required" style="color: red;">Display Order required</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-20">
+          <label for="chrDisplayMenu">Active</label>
+        </div>
+        <div class="col-25">
+          <mat-checkbox formControlName="chrDisplayMenu" [checked]="chrDisplayMenu" class="example-margin">
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="example-button-row">
+        <button title="Save" (click)="btnSave_Click()" mat-raised-button color="accent">Save</button>
+        <button title="Cancel" (click)="btnClear_Click()" mat-raised-button color="warn">Cancel</button>
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col-100">
+        <dx-data-grid id="gridContainer" [dataSource]="Menu" keyExpr="intGlCode" [allowColumnReordering]="true"
+          [showBorders]="true">
+          <dxo-paging [pageSize]="10"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[10, 20, 30]" [showInfo]="true">
+          </dxo-pager>
+          <dxo-filter-row visible="true"></dxo-filter-row>
+          <dxi-column cellTemplate="cellTemplate" caption="Menu Code" dataField="varMenuCode" alignment="center">
+          </dxi-column>
+          <div *dxTemplate="let cell of 'cellTemplate'">
+            <a style="cursor:pointer;text-decoration: underline;font-weight:bold;"
+              (click)="LB_Click(cell.data.intGlCode)">{{cell.text}}</a>
+          </div>
+          <dxi-column caption="Menu Name" alignment="center" dataField="varMenuName">
+          </dxi-column>
+
+          <dxi-column caption="Manu URL" dataField="varURL" alignment="center">
+          </dxi-column>
+          <dxi-column caption="Icon Path" dataField="varIconPath" alignment="center"></dxi-column>
+          <dxi-column caption="Tag List" dataField="varTagList" alignment="center"></dxi-column>
+          <dxi-column caption="Display Order" dataField="varDisplayOrder" alignment="center"></dxi-column>
+          <dxi-column caption="Active" dataField="chrDisplayMenu" alignment="center"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
+
+  </div>
+
+</div>

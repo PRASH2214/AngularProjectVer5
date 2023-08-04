@@ -1,0 +1,203 @@
+<div id="tableauReport" class="page-layout simple fullwidth" fxLayout="column">
+  <div [ngClass]="classname" fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="black-fg" fxLayout="row" fxLayoutAlign="start center" fxHide>
+        <mat-icon class="secondary-text s-18">home</mat-icon>
+        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+        <span class="secondary-text">Dashboard</span>
+      </div>
+      <div class="report_title h1 mt-5">{{rptName}}</div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <!-- <button button class="delete-button">
+        <mat-icon class="secondary-text s-28" title="Save" (click)="btnSave_Click()">add_box</mat-icon>
+      </button>
+      <button button class="download-button">
+        <mat-icon class="secondary-text s-28" title="Cancel" (click)="btnClear_Click()"> cancel</mat-icon>
+      </button> -->
+    </div>
+  </div>
+  <div class="container">
+    <form [formGroup]="PersonForm">
+      <div class="row">
+        <div class="col-20">
+          <label for="varUserCode">User Code</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;"  type="text" number formControlName="varUserCode" placeholder="User Code" name="varUserCode"
+            onKeyPress="if(this.value.length==20) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varUserCode.errors }">
+          <div *ngIf="submitted && f.varUserCode.errors" class="invalid-feedback">
+            <div *ngIf="f.varUserCode.errors.required" style="color: red;">User code is required</div>
+          </div>
+        </div>
+        <div class="col-20">
+          <label for="varUserName">User Name</label>
+        </div>
+        <div class="col-25">
+          <input type="text" style="width: 80%;"  formControlName="varUserName" name="varUserName"
+            onKeyPress="if(this.value.length==100) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varUserName.errors }" placeholder="User Name">
+          <div *ngIf="submitted && f.varUserName.errors" class="invalid-feedback">
+            <div *ngIf="f.varUserName.errors.required" style="color: red;">User Name is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-20">
+          <label for="varEmail">Email</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;"  type="text" formControlName="varEmail" name="varEmail" placeholder="Email"
+            onKeyPress="if(this.value.length==50) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varEmail.errors }">
+          <div *ngIf="submitted && f.varEmail.errors" class="invalid-feedback">
+            <div *ngIf="f.varEmail.errors.required" style="color: red;"> Email is required</div>
+          </div>
+        </div>
+        <div class="col-20">
+          <label for="varMobile">Mobile</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;"  type="text" formControlName="varMobile" name="varMobile" placeholder="Mobile"
+            onKeyPress="if(this.value.length==20) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varMobile.errors }">
+          <div *ngIf="submitted && f.varMobile.errors" class="invalid-feedback">
+            <div *ngIf="f.varMobile.errors.required" style="color: red;">Mobile is required
+            </div>
+          </div>
+        </div>
+       
+      </div>
+
+      <div class="row">
+        <div class="col-20">
+          <label for="varDesignation">Designation</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;"  type="text" formControlName="varDesignation" name="varDesignation" placeholder="Designation"
+            onKeyPress="if(this.value.length==50) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varDesignation.errors }">
+          <div *ngIf="submitted && f.varDesignation.errors" class="invalid-feedback">
+            <div *ngIf="f.varDesignation.errors.required" style="color: red;">Designation is required</div>
+          </div>
+        </div>
+        <div class="col-20">
+          <label for="fk_CountryGlCode">Primary Country</label>
+        </div>
+        <div class="col-25">
+          <select style="width: 80%;"  formControlName="fk_CountryGlCode">
+            <option value="">Select</option>
+            <option *ngFor="let country of Primarycountries" value={{country.intGlCode}}>
+              {{country.varCountryName}}
+            </option>
+          </select>
+          <div *ngIf="submitted && f.fk_CountryGlCode.errors" class="invalid-feedback">
+            <div *ngIf="f.fk_CountryGlCode.errors.required" style="color: red;">Primary Country is required</div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-20">
+          <label for="varUserCode_Ref1">UserCode_Ref1</label>
+        </div>
+        <div class="col-25">
+          <input style="width: 80%;"  type="text" formControlName="varUserCode_Ref1" name="varUserCode_Ref1" placeholder="UserCode_Ref1"
+            onKeyPress="if(this.value.length==100) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varUserCode_Ref1.errors }">
+          <div *ngIf="submitted && f.varUserCode_Ref1.errors" class="invalid-feedback">
+            <div *ngIf="f.varUserCode_Ref1.errors.required" style="color: red;">UserCode_Ref1 is
+              required</div>
+          </div>
+        </div>
+
+        <div class="col-20">
+          <label for="chrActive">Active</label>
+        </div>
+        <div class="col-25">
+          <mat-checkbox formControlName="chrActive" [checked]="chrActive" class="example-margin">
+          </mat-checkbox>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-20">
+          <label for="countries">Person Country Mapping</label>
+        </div>
+        <div class="col-75" style=" display: inline-flex;">
+          <div *ngFor="let country_Person of countries">
+            <mat-checkbox class="example-margin" (change)="onPersonCountryChange($event,country_Person)"
+              [value]="country_Person.intGlCode" [checked]="country_Person.checked">
+              {{country_Person.varCountryName}}</mat-checkbox>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-20">
+          <label for="Role">Person Role Mapping</label>
+        </div>
+        <div class="col-75" style=" display: inline-flex;">
+
+          <div *ngFor="let Role of Roles">
+            <mat-checkbox class="example-margin" (change)="onPersonRoleChange($event,Role)" [value]="Role.intGlCode"
+              [checked]="Role.checked">
+              {{Role.varRoleName}}</mat-checkbox>
+          </div>
+          <!-- <div *ngFor="let Role of Roles;let i=index">
+            <label>
+              <input type="checkbox" formControlName=Role name="Role" [id]="Role.intGlCode"
+                (change)="onPersonRoleChange($event.target.checked, Role)" value="{{Role.intGlCode}}"
+                [checked]="Fk_Person_Roleselected?.includes(Role.intGlCode)" [(ngModel)]="Role.checked" />
+              {{Role.varRoleName}}
+            </label>
+          </div> -->
+        </div>
+      </div>
+      <div class="example-button-row">
+        <button title="Save" (click)="btnSave_Click()" mat-raised-button color="accent">Save</button>
+        <button title="Cancel" (click)="btnClear_Click()" mat-raised-button color="warn">Cancel</button>
+      </div>
+    </form>
+    <div class="row">
+      <div class="col-100">
+
+        <dx-data-grid id="gridContainer" [dataSource]="Person" keyExpr="intGlCode" [allowColumnReordering]="true"
+          [showBorders]="true">
+          <dxo-paging [pageSize]="5"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+          </dxo-pager>
+          <dxo-filter-row visible="true"></dxo-filter-row>
+          <!-- <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [useIcons]="true">
+          </dxo-editing> -->
+          <!-- <dxi-column type="buttons" [width]="110">
+            <dxi-button [onClick]="rowCellHandler" name="edit"></dxi-button> -->
+          <!-- <dxi-button [onClick]="allowDeleting" name="delete"></dxi-button> -->
+          <!-- </dxi-column> -->
+          <dxi-column cellTemplate="cellTemplate" caption="User Code" dataField="varUserCode" alignment="center">
+          </dxi-column>
+          <div *dxTemplate="let cell of 'cellTemplate'">
+            <a style="cursor:pointer;text-decoration: underline;font-weight:bold;"
+              (click)="LB_Click(cell.data.intGlCode)">{{cell.text}}</a>
+          </div>
+          <!-- <dxi-column caption="User Code" dataField="varUserCode" alignment="center">
+          </dxi-column> -->
+          <dxi-column caption="User Name" dataField="varUserName" alignment="center">
+          </dxi-column>
+          <dxi-column caption="Email" dataField="varEmail" alignment="center"></dxi-column>
+          <dxi-column caption="Mobile" dataField="varMobile" alignment="center">
+          </dxi-column>
+          <dxi-column caption="Designation" dataField="varDesignation" alignment="center"></dxi-column>
+          <!-- <dxi-column caption="Password" dataField="varPassword" alignment="center"></dxi-column> -->
+          <dxi-column caption="Active" dataField="chrActive" alignment="center">
+          </dxi-column>
+          <dxi-column caption="Country Name" dataField="varCountryName"></dxi-column>
+          <dxi-column caption="UserCode_Ref1" dataField="varUserCode_Ref1" alignment="center"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
+  </div>
+
+</div>

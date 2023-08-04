@@ -1,0 +1,102 @@
+<div class="content-wrapper">
+
+  <div class="page-header">
+    <h3 class="page-title"> Today Appointments </h3>
+
+  </div>
+  <div class="row dashboardcard">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+
+
+          <div class="row status-switch">
+
+          </div>
+          <div class="row">
+
+            <div class="col-12">
+              <div class="table-responsive">
+                <table class="table table-striped ">
+
+                  <thead class="thead-dark">
+                    <tr>
+                      <th> Sr. no </th>
+                      <th> Reference ID </th>
+                      <th> Type </th>
+                      <th> Appointment Date </th>
+                      <th> Slot </th>
+                      <th> Status </th>
+                      <th> Action </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      *ngFor="let row of allappointmentlst | paginate:config;let index =index;let isOdd=odd;let isEven=even;let i=index"
+                      [class.table-active]="isOdd" [class.table-active1]="isEven">
+                      <td class="py-1">
+                        {{i + 1}}
+                      </td>
+                      <td>{{row.ConsultationReferenceNumber}} </td>
+                      <td *ngIf="row.Type==1">Online</td>
+                      <td *ngIf="row.Type==2">Offline</td>
+                      <td>{{row.AppointmentDate | date: 'dd-MM-yyyy'}} </td>
+
+                      <td>{{row.SlotFromTime.totalMinutes * 1000 * 60| date:'hh:mm a':'UTC'}} -
+                        {{row.SlotEndTime.totalMinutes * 1000 * 60| date:'hh:mm a':'UTC'}} </td>
+                      <td *ngIf="row.Status==1">Payment Pending </td>
+                      <td *ngIf="row.Status==2">Payment Fail </td>
+                      <td *ngIf="row.Status==3">Payment Cancelled </td>
+                      <td *ngIf="row.Status==4">Payment Done </td>
+                      <td *ngIf="row.Status==5">Completed </td>
+                      <td *ngIf="row.Status==6">Refund Requested </td>
+                      <td *ngIf="row.Status==7">Refund Approved </td>
+                      <td *ngIf="row.Status==8">Refunded Rejected </td>
+                      <td *ngIf="row.Status==9">Refunded </td>
+                      <td>
+
+                        <a *ngIf="row.Status==4" class="btn  btn-primary btn-sm" (click)="RefundAmount(row)"><i
+                            class="mdi  mdi-currency-inr mr-1"></i>Refund</a>
+
+                        <a *ngIf="row.Status==5" class="btn  btn-primary btn-sm" (click)="completecase(row)"><i
+                            class="mdi  mdi-eye-inr mr-1"></i>View</a>
+
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="row d-flex align-items-center">
+            <div class="col-sm-12 col-md-5 mb-1">
+              <div class="dataTables_info" id="order-listing_info" role="status" aria-live="polite"></div>
+            </div>
+            <div class="col-sm-12 col-md-7">
+              <ul class="pagination float-right pagination-success mb-0">
+
+                <li class="page-item">
+                  <pagination-controls (pageChange)="pageChanged($event)" style="text-align: center;">
+                  </pagination-controls>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>

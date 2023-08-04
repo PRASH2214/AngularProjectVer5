@@ -1,0 +1,217 @@
+<div id="product" class="page-layout carded fullwidth inner-scroll">
+
+  <!-- TOP BACKGROUND -->
+  <div class="top-bg mat-accent-bg"></div>
+  <!-- / TOP BACKGROUND -->
+
+  <!-- CENTER -->
+  <div class="center">
+
+    <!-- HEADER -->
+    <div class="header mat-accent-bg" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+      <div class="breadcrumb">
+        <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/masters/products'">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <div class="product-image mr-8 mr-sm-16" [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
+          <img [src]="'assets/images/ecommerce/product-image-placeholder.png'">
+        </div>
+
+        <div fxLayout="column" fxLayoutAlign="start start" [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+          <div class="h2" *ngIf="pageType ==='edit'">
+            {{product.varProductName}}
+          </div>
+          <div class="h2" *ngIf="pageType ==='new'">
+            New Product
+          </div>
+          <div class="subtitle secondary-text">
+            <span>Product Detail</span>
+          </div>
+        </div>
+      </div>
+      <button mat-raised-button class="save-product-button mat-white-bg my-12 mt-sm-0" [disabled]="form.invalid" (click)="SaveProduct()"
+        *ngIf="pageType ==='new'">
+        <span>ADD</span>
+      </button>
+      <button mat-raised-button class="save-product-button mat-white-bg my-12 mt-sm-0" [disabled]="form.invalid || form.pristine"
+        *ngIf="pageType ==='edit'" (click)="saveProduct()">
+        <span>SAVE</span>
+      </button>
+    </div>
+    <!-- / HEADER -->
+    <!-- CONTENT CARD -->
+    <div class="content-card mat-white-bg mb-24">
+      <!-- CONTENT -->
+      <div class="content">
+
+        <div fxLayout="column" fxLayoutAlign="start start" fxLayout.gt-md="row">
+
+          <!-- REACTIVE FORM EXAMPLE -->
+
+          <form class="mat-white-bg p-24 mr-24 w-100-p" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto"
+            name="form" [formGroup]="form">
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+
+              <mat-form-field fxFlex="100">
+                <input matInput placeholder="Product Code" formControlName="varProductCode">
+              </mat-form-field>
+
+            </div>
+
+            <div class="int_form_field_main">
+
+              <mat-form-field>
+                <input matInput placeholder="Product Name" formControlName="varProductName" required>
+                <mat-error *ngIf="formErrors.varProductName.required">
+                  Product Name is required!
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-select placeholder="PTM" formControlName="fk_PTMGlCode" required>
+                  <mat-option *ngFor="let item of ptmItem" [value]="item.varVal">
+                    {{ item.varItem }}
+                  </mat-option>
+                </mat-select>
+                <!-- <mat-select [formControl]="fk_PTMGlCode" placeholder="Bank" #singleSelect>
+                  <mat-select-search [formControl]="ptmSearchCtrl"></mat-select-search>
+                  <mat-option *ngFor="let bank of filteredOptions | async" [value]="bank">
+                    {{bank.varItem}}
+                  </mat-option>
+                </mat-select> -->
+
+                <!-- <input type="text" placeholder="PTM" aria-label="PTM" matInput formControlName="fk_PTMGlCode" [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                  <mat-option *ngFor="let item of filteredOptions | async" [value]="item.varItem">
+                    {{ item.varItem }}
+                  </mat-option>
+                </mat-autocomplete> -->
+                <mat-error *ngIf="formErrors.fk_PTMGlCode.required">
+                  PTM Type is required!
+                </mat-error>
+              </mat-form-field>
+
+            </div>
+            <div class="int_form_field_main">
+              <mat-form-field>
+                <input matInput placeholder="GTIN No." formControlName="varGTINNo" required>
+                <mat-error *ngIf="formErrors.varGTINNo.required">
+                  GTIN No. is required!
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput placeholder="Generic Name" formControlName="varGenericName" required>
+                <mat-error *ngIf="formErrors.varGenericName.required">
+                  Generic Name is required!
+                </mat-error>
+              </mat-form-field>
+
+
+            </div>
+
+            <div class="int_form_field_main">
+
+              <mat-form-field>
+                <input matInput placeholder="Composition" formControlName="varComposition" required>
+                <mat-error *ngIf="formErrors.varComposition.required">
+                  Composition is required!
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field>
+                <input matInput placeholder="Usage" formControlName="varUsage" required>
+                <mat-error *ngIf="formErrors.varUsage.required">
+                  Usage is required!
+                </mat-error>
+              </mat-form-field>
+
+            </div>
+
+            <div class="check_form_field_main">
+              <div class="mat-form-field-infix">
+
+                <div class="check_form_field">
+                  <div class="label_title">
+                    <label class="label-margin">Product Type:</label>
+                  </div>
+                  <div class="inpt_field">
+                    <mat-radio-group formControlName="chrProductType" required>
+                      <mat-radio-button *ngFor="let item of productTypeItem" [value]="item.varVal">
+                        {{item.varItem}}
+                      </mat-radio-button>
+                    </mat-radio-group>
+                    <mat-error *ngIf="formErrors.chrProductType.required">
+                      Product Type is required!
+                    </mat-error>
+                  </div>
+                </div>
+                <div class="check_form_field">
+                  <div class="label_title">
+                    <label class="label-margin">Schedule:</label>
+                  </div>
+                  <div class="inpt_field">
+                    <mat-radio-group formControlName="chrScheduled" required>
+                      <mat-radio-button *ngFor="let item of scheduleItem" [value]="item.varVal">
+                        {{item.varItem}}
+                      </mat-radio-button>
+                    </mat-radio-group>
+                    <mat-error *ngIf="formErrors.chrScheduled.required">
+                      Schedule Drug Type is required!
+                    </mat-error>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="check_form_field_main">
+              <div class="mat-form-field-infix">
+                <div class="check_form_field">
+                  <div class="label_title">
+                    <label class="label-margin">Active : </label>
+                    <mat-slide-toggle formControlName="chrActive"></mat-slide-toggle>
+                  </div>
+                  <div class="inpt_field">
+                    <!-- <mat-radio-group formControlName="active" required>
+                    <mat-radio-button value="Y">Yes</mat-radio-button>
+                    <mat-radio-button value="N">No</mat-radio-button>
+                  </mat-radio-group> -->
+
+                  </div>
+                </div>
+                <div class="check_form_field">
+                  <div class="label_title">
+                    <label class="label-margin btn">Monocation:</label>
+                  </div>
+                  <div class="inpt_field">
+                    <mat-radio-group formControlName="chrMonocarton" required>
+                      <mat-radio-button value="Y">Yes</mat-radio-button>
+                      <mat-radio-button value="N">No</mat-radio-button>
+                    </mat-radio-group>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div fxLayout="row" fxLayoutAlign="start center" fxFlex="1 0 auto">
+            <button mat-raised-button class="mat-accent btn_mobile" [disabled]="form.invalid" (click)="SaveProduct()">Save</button>
+          </div> -->
+          </form>
+
+          <!-- / REACTIVE FORM EXAMPLE -->
+
+          <!-- <div class="form-errors-model mat-white-bg p-24 mat-elevation-z4">
+  
+          <div class="h2 mb-24">Reactive Form Errors Model</div>
+  
+          <pre><code>{{formErrors | json}}</code></pre>
+        </div> -->
+
+        </div>
+      </div>
+      <!-- / CONTENT -->
+    </div>
+    <!-- / CONTENT CARD -->
+  </div>
+  <!-- / CENTER -->
+</div>

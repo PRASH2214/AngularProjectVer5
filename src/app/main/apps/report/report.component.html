@@ -1,0 +1,36 @@
+<div id="tableauReport" class="page-layout simple fullwidth" fxLayout="column">
+  <div [ngClass]="classname" fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="black-fg" fxLayout="row" fxLayoutAlign="start center" fxHide>
+        <mat-icon class="secondary-text s-18">home</mat-icon>
+        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+        <span class="secondary-text">Dashboard</span>
+      </div>
+      <div class="report_title h1 mt-5">{{rptName}}</div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <button *ngIf="this.isButtonVisible" button class="reset-product-button" (click)="RefreshDashboard()">
+        <mat-icon class="secondary-text s-28" title="Refresh"> refresh</mat-icon>
+      </button>
+      <button button class="add-comment-btn" (click)="addComment()">
+        <mat-icon class="secondary-text s-28" title="Comment">comment</mat-icon>
+      </button>
+      <button button class="save-product-FullScreen" (click)="fullscreen()">
+        <mat-icon class="secondary-text s-30" title="Full Screen">fullscreen</mat-icon>
+      </button>
+      <button button class="save-product-button" (click)="exportPDF()">
+        <mat-icon class="secondary-text s-28" title="Download"> file_download</mat-icon>
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="content">
+    <div class="full-width">
+      <div id="container">
+        <div id="tableauViz"></div>
+      </div>
+    </div>
+  </div>
+</div>

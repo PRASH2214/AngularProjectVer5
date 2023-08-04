@@ -1,0 +1,185 @@
+<div class="content-wrapper">
+
+
+  <div class="row dashboardcard">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+
+
+          <div class="col-md-12 grid-margin stretch-card">
+            <div class="card consulttab">
+              <div class="card-body ">
+
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home-1" (click)="Refresh();"
+                      role="tab" aria-controls="home" aria-selected="false"><b>Today Consultations</b></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " id="profile-tab" data-toggle="tab" href="#profile-1"
+                      (click)="pastconsultation();" role="tab" aria-controls="profile" aria-selected="true"><b>Past
+                        Consultations</b></a>
+                  </li>
+
+                </ul>
+                <div class="tab-content">
+                  <div class="tab-pane fade active show" id="home-1" role="tabpanel" aria-labelledby="home-tab">
+
+                    <div class="row">
+
+                      <div class="col-12">
+                        <div class="table-responsive">
+                          <table class="table table-striped ">
+
+                            <thead class="thead-dark">
+                              <tr>
+                                <th> Sr. no </th>
+                                <th> MR  </th>
+                                <th> Appointment Date </th>
+                                <th> Slot </th>
+                                <th> Subject </th>
+                                <th> Status </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr
+                                *ngFor="let row of allappointmentlst;let index =index;let isOdd=odd;let isEven=even;let i=index">
+                                <td class="py-1">
+                                  {{i + 1}}
+                                </td>
+                                <td>{{row.MRName}} </td>
+                                <td>{{row.AppointmentDate | date: 'dd-MM-yyyy'}} </td>
+
+                                <td>{{row.SlotFromTime.totalMinutes * 1000 * 60| date:'hh:mm a':'UTC'}} -
+                                  {{row.SlotEndTime.totalMinutes * 1000 * 60| date:'hh:mm a':'UTC'}} </td>
+
+                                <td>{{row.Subject}} </td>
+
+                                <td *ngIf="row.Status==1"> <a class="btn btn-info btn-sm" (click)="InitiateCall(row)"><i
+                                      class="mdi mdi-phone mr-1"></i>Call</a> </td>
+                                <td *ngIf="row.Status==5">Completed </td>
+
+
+                              </tr>
+
+                            </tbody>
+                          </table>
+                        </div>
+
+                      </div>
+
+
+
+                    </div>
+                    <div class="card-footer">
+                      <div class="row d-flex align-items-center">
+                        <div class="col-sm-12 col-md-5 mb-1">
+                          <div class="dataTables_info" id="order-listing_info" role="status" aria-live="polite"></div>
+                        </div>
+                        <div class="col-sm-12 col-md-7">
+                          <ul class="pagination float-right pagination-success mb-0">
+
+                            <li class="page-item">
+                              <pagination-controls (pageChange)="pageChanged($event)" style="text-align: center;">
+                              </pagination-controls>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+
+                  </div>
+                  <div class="tab-pane fade " id="profile-1" role="tabpanel" aria-labelledby="profile-tab">
+
+
+                    <div class="row">
+
+                      <div class="col-12">
+                        <div class="table-responsive">
+                          <table class="table table-striped ">
+
+                            <thead class="thead-dark">
+                              <tr>
+                                <th> Sr. no </th>
+                                <th> MR  </th>
+                                <th> Appointment Date </th>
+                                <th> Slot </th>
+                                <th> Subject </th>
+                                <th> Status </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr
+                                *ngFor="let row of allpastappointmentlst;let index =index;let isOdd=odd;let isEven=even;let i=index">
+                                <td class="py-1">
+                                  {{i + 1}}
+                                </td>
+                                <td>{{row.MRName}} </td>
+                                <td>{{row.AppointmentDate | date: 'dd-MM-yyyy'}} </td>
+
+                                <td>{{row.SlotFromTime.totalMinutes * 1000 * 60| date:'hh:mm a':'UTC'}} -
+                                  {{row.SlotEndTime.totalMinutes * 1000 * 60| date:'hh:mm a':'UTC'}} </td>
+
+                                <td>{{row.Subject}} </td>
+
+                                <td *ngIf="row.Status==1">Pending </td>
+                                <td *ngIf="row.Status==5">Completed </td>
+
+
+                              </tr>
+
+                            </tbody>
+                          </table>
+                        </div>
+
+                      </div>
+
+
+
+                    </div>
+                    <div class="card-footer">
+                      <div class="row d-flex align-items-center">
+                        <div class="col-sm-12 col-md-5 mb-1">
+                          <div class="dataTables_info" id="order-listing_info" role="status" aria-live="polite"></div>
+                        </div>
+                        <div class="col-sm-12 col-md-7">
+                          <ul class="pagination float-right pagination-success mb-0">
+
+                            <li class="page-item">
+                              <pagination-controls (pageChange)="pageChanged($event)" style="text-align: center;">
+                              </pagination-controls>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+
+
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>

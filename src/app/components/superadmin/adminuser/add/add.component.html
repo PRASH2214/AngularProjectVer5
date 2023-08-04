@@ -1,0 +1,167 @@
+<div class="content-wrapper">
+
+    <div class="page-header">
+      <h3 class="page-title"> Add Admin User </h3>
+  
+    </div>
+    <div class="row dashboardcard">
+      <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+  
+  
+          <div class="card-body">
+            <form  [formGroup]="userForm">
+  
+  
+  
+              <div class=" row mt-4">
+                <div class="col-md-6 form-group">
+                  <label for="exampleInputUsername1">{{'Name'| translate}}<span class="text-danger">*</span></label>
+                  <input type="text" autocomplete="off" class="form-control" name="AdminName" formControlName="AdminName" placeholder="Name"
+                    [ngClass]="{ 'is-invalid': submitted && f.AdminName.errors }" maxlength="99" UserNameOnly>
+                  <div *ngIf="submitted && f.AdminName.errors" class="invalid-feedback">
+                    <div *ngIf="f.AdminName.errors.required">{{'NameError'| translate}}</div>
+                  </div>
+  
+                </div>
+  
+                <div class="col-md-6 form-group">
+  
+  
+                  <label for="exampleInputUsername1">{{'State'| translate}}<span class="text-danger">*</span></label>
+                  <select class="form-control" name="StateId" formControlName="StateId"
+                    [ngClass]="{ 'is-invalid': submitted && f.StateId.errors }" #stateddl
+                    (change)='onStateSelected(stateddl.value)'>
+                    <option value="" selected="selected">Select</option>
+                    <option *ngFor="let objstate of allstatelst" value="{{objstate.stateId}}">{{objstate.stateName}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.StateId.errors" class="invalid-feedback">
+                    <div *ngIf="f.StateId.errors.required">{{'StateError'| translate}}</div>
+                  </div>
+  
+                </div>
+  
+  
+                <div class="col-md-6 form-group">
+                  <label for="exampleInputUsername1">{{'District'| translate}}<span class="text-danger">*</span></label>
+  
+  
+                  <select class="form-control" name="DistrictId" formControlName="DistrictId"
+                    [ngClass]="{ 'is-invalid': submitted && f.DistrictId.errors }" #districtdll
+                    (change)='onDistrictSelected(districtdll.value)'>
+                    <option value="" selected="selected">Select</option>
+                    <option *ngFor="let objdist of alldistrictlst" value="{{objdist.districtId}}">
+                      {{objdist.districtName}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.DistrictId.errors" class="invalid-feedback">
+                    <div *ngIf="f.DistrictId.errors.required">{{'DistrictError'| translate}}</div>
+                  </div>
+  
+  
+  
+  
+                </div>
+  
+                <div class="col-md-6 form-group">
+                  <label for="exampleInputUsername1">{{'City'| translate}}<span class="text-danger">*</span></label>
+                  <select class="form-control" name="CityId" formControlName="CityId"
+                    [ngClass]="{ 'is-invalid': submitted && f.CityId.errors }">
+                    <option value="" selected="selected">Select</option>
+                    <option *ngFor="let objcity of allcitylst" value="{{objcity.cityId}}">{{objcity.cityName}}
+                    </option>
+                  </select>
+                  <div *ngIf="submitted && f.CityId.errors" class="invalid-feedback">
+                    <div *ngIf="f.CityId.errors.required">{{'CityError'| translate}}</div>
+                  </div>
+                </div>
+  
+  
+  
+  
+  
+                <div class="col-md-6 form-group">
+                  <label for="exampleInputUsername1">{{'Phone'| translate}}<span class="text-danger">*</span></label>
+                  <input type="text" autocomplete="off" class="form-control" name="AdminMobile" formControlName="AdminMobile" maxlength="10" numbersOnly
+                    placeholder="Phone" [ngClass]="{ 'is-invalid': submitted && f.AdminMobile.errors }">
+                  <div *ngIf="submitted && f.AdminMobile.errors" class="invalid-feedback">
+                    <div *ngIf="f.AdminMobile.errors.required">{{'PhoneError'| translate}}</div>
+                  </div>
+                </div>
+  
+  
+  
+                <div class="col-md-6 form-group">
+                  <label for="exampleInputUsername1">{{'Client'| translate}}<span class="text-danger">*</span></label>
+                  <input type="text" autocomplete="off" class="form-control" name="ClientName" formControlName="ClientName"
+                    placeholder="Client Name" [ngClass]="{ 'is-invalid': submitted && f.ClientName.errors }" maxlength="99" UserNameOnly>
+                  <div *ngIf="submitted && f.ClientName.errors" class="invalid-feedback">
+                    <div *ngIf="f.ClientName.errors.required">{{'ClientError'| translate}}</div>
+                  </div>
+                </div>
+  
+  
+  
+                <div class="col-md-6 form-group">
+                  <label for="exampleInputUsername1">{{'WebURL'| translate}}<span class="text-danger">*</span></label>
+                  <input type="text" autocomplete="off" class="form-control" name="WebUrl" formControlName="WebUrl"
+                    placeholder="Web Url" [ngClass]="{ 'is-invalid': submitted && f.WebUrl.errors }" maxlength="500">
+                  <div *ngIf="submitted && f.WebUrl.errors" class="invalid-feedback">
+                    <div *ngIf="f.WebUrl.errors.required">{{'WebURLError'| translate}}</div>
+                    <div *ngIf="f.WebUrl.errors.pattern">Enter valid link.</div>
+                  </div>
+                </div>
+  
+  
+                <div class="col-md-6 form-group">
+                  <label for="exampleInputUsername1">{{'MrURL'| translate}}<span class="text-danger">*</span></label>
+                  <input type="text" autocomplete="off" class="form-control" name="MrUrl" formControlName="MrUrl"
+                    placeholder="MR Url" [ngClass]="{ 'is-invalid': submitted && f.MrUrl.errors }" maxlength="500">
+                  <div *ngIf="submitted && f.MrUrl.errors" class="invalid-feedback">
+                    <div *ngIf="f.MrUrl.errors.required">{{'MrURLError'| translate}}</div>
+                    <div *ngIf="f.MrUrl.errors.pattern">Enter valid link.</div>
+                  </div>
+                </div>
+  
+  
+  
+  
+  
+                <div class="col-md-6 form-group">
+                  <label for="exampleInputUsername1">{{'Address'| translate}}<span class="text-danger">*</span></label>
+                  <textarea class="form-control" name="Address" formControlName="Address" rows="4" spellcheck="false" placeholder="Address"
+                    [ngClass]="{ 'is-invalid': submitted && f.Address.errors }" maxlength="250"></textarea>
+                  <div *ngIf="submitted && f.Address.errors" class="invalid-feedback" >
+                    <div *ngIf="f.Address.errors.required">{{'AddressError'| translate}}</div>
+                  
+                  </div>
+  
+                </div>
+  
+  
+  
+  
+  
+              </div>
+              <hr>
+              <button type="submit" class="btn btn-primary mr-2" (click)="Save()">{{'Submit'| translate}}</button> <button
+                class="btn btn-light" routerLink="/control/dashboard">{{'Cancel'| translate}}</button>
+  
+  
+  
+            </form>
+  
+          </div>
+  
+  
+  
+  
+        </div>
+      </div>
+  
+  
+  
+  
+  
+    </div>

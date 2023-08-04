@@ -1,0 +1,325 @@
+@import "src/@fuse/scss/fuse";
+
+fuse-sidebar {
+    &.folded{
+        navbar{
+            navbar-vertical-style-1{
+                .navbar-top{
+                    min-height: 50px;
+                    max-height: 50px;
+                    height: 50px;
+                    .logo{ 
+                        display: block; 
+                    }
+                }
+                .navbar-top-green{
+                    min-height: 50px;
+                    max-height: 50px;
+                    height: 50px;
+                    .logo{ 
+                        display: block; 
+                    }
+                }
+            } 
+        }
+    }
+    &.unfolded{
+        navbar{
+            navbar-vertical-style-1{
+                .navbar-top{
+                    min-height: 150px;
+                    max-height: 150px;
+                    height: 150px;
+                    .logo{ 
+                        display: none; 
+                    }
+                }
+                .navbar-top-green{
+                    min-height: 150px;
+                    max-height: 150px;
+                    height: 150px;
+                    .logo{ 
+                        display: none; 
+                    }
+                }
+            } 
+        }
+    }
+    &.navbar-fuse-sidebar {
+        overflow: hidden;
+        &.folded:not(.unfolded) {
+
+            navbar {
+
+                navbar-vertical-style-1 {
+
+                    .navbar-top {
+                        padding: 0;
+                        justify-content: center;
+                        
+
+                        .buttons {
+                            display: none;
+                        }
+
+                        .logo {
+                            
+                            .logo-icon {
+                                width: auto;
+                                height: auto;
+                            }
+
+                            .logo-text {
+                                display: none;
+                            }
+                        }
+                    }
+                    .navbar-top-green {
+                        padding: 0;
+                        justify-content: center;
+                        
+
+                        .buttons {
+                            display: none;
+                        }
+
+                        .logo {
+                            
+                            .logo-icon {
+                                width: auto;
+                                height: auto;
+                            }
+
+                            .logo-text {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    .navbar-scroll-container {
+
+                        .user {
+                            padding: 0;
+
+                            .avatar-container {
+                                position: relative;
+                                top: auto;
+                                padding: 0;
+                                transform: translateX(0);
+                                left: auto;
+
+                                .avatar {
+                                    width: 40px;
+                                    height: 40px;
+                                }
+                            }
+
+                            .username,
+                            .email {
+                                display: none;
+                            }
+                        }
+
+                        .navbar-content {
+                            margin-top: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+navbar {
+
+    &.vertical-style-1 {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        width: 100%;
+        height: 100%;
+
+        &.right-navbar {
+
+            .toggle-sidebar-opened {
+
+                mat-icon {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+    
+
+
+
+    navbar-vertical-style-1 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+
+        .navbar-scroll-container {
+            margin-top: 0;
+        }
+
+        .navbar-top {
+            display: flex;
+            flex-direction: row;
+            flex: 1 0 auto;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 150px;
+            max-height: 150px;
+            height: 150px;
+            padding: 12px 12px 12px 20px;
+            //background: #65AC1E !important;
+            background: #a6c0da !important;
+            position: static;
+            width: 100%;
+            top: 0;
+
+            @include media-breakpoint('xs') {
+                min-height: 100px;
+                max-height: 100px;
+                height: 100px;
+            }
+            .user{
+                width: 100%;
+                text-align: left;
+                padding-top:5px; 
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+                display: none;
+
+            }
+
+            .buttons {
+                display: flex;
+                align-items: center;
+                float: right;
+                width: auto;
+                right: 10px;
+                position: absolute;
+                top: 5px;
+
+                .pin-icon .pin-img {
+                    max-width: 25px;
+                    vertical-align: middle;
+                }
+                .pin-icon .unpin-img {
+                    max-width: 25px;
+                    vertical-align: middle;
+                    position: absolute;
+                    left: 8px;
+                    right: -2px;
+                    bottom: 7px;
+                }
+                
+            }
+        }
+        .navbar-top-green {
+            display: flex;
+            flex-direction: row;
+            flex: 1 0 auto;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 150px;
+            max-height: 150px;
+            height: 150px;
+            padding: 12px 12px 12px 20px;
+            background: #65AC1E !important;
+            //background: #a6c0da !important;
+            position: static;
+            width: 100%;
+            top: 0;
+
+            @include media-breakpoint('xs') {
+                min-height: 100px;
+                max-height: 100px;
+                height: 100px;
+            }
+            .user{
+                width: 100%;
+                text-align: left;
+                padding-top:5px; 
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+                display: none;
+
+            }
+
+            .buttons {
+                display: flex;
+                align-items: center;
+                float: right;
+                width: auto;
+                right: 10px;
+                position: absolute;
+                top: 5px;
+
+                .pin-icon .pin-img {
+                    max-width: 25px;
+                    vertical-align: middle;
+                }
+                .pin-icon .unpin-img {
+                    max-width: 25px;
+                    vertical-align: middle;
+                    position: absolute;
+                    left: 8px;
+                    right: -2px;
+                    bottom: 7px;
+                }
+                
+            }
+        }
+
+        .navbar-scroll-container {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+
+            background: linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 30%),
+            linear-gradient(rgba(0, 0, 0, 0.25) 0, rgba(0, 0, 0, 0) 40%);
+
+            background-repeat: no-repeat;
+            background-size: 100% 40px, 100% 10px;
+            background-attachment: local, scroll;
+
+            .user {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+                padding: 0 0 48px 0;
+                background: #65AC1E !important;
+
+                .avatar-container {
+                    position: absolute;
+                    top: 92px;
+                    border-radius: 50%;
+                    padding: 8px;
+                    transform: translateX(-50%);
+                    left: 50%;
+
+                    .avatar {
+                        width: 72px;
+                        height: 72px;
+                        margin: 0;
+                    }
+                }
+            }
+
+            .navbar-content {
+                flex: 1 1 auto;
+                margin-top: 0;
+            }
+        }
+    }
+}

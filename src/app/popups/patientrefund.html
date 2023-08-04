@@ -1,0 +1,28 @@
+<div class="outerline">
+  <h1 mat-dialog-title>
+    <div class="sub-header">
+      <span>Refund</span>
+    </div>
+  </h1>
+  <div mat-dialog-content>
+    <div class="row">
+
+
+      <div class="col-md-12">
+        Reason :  <textarea class="form-control" #Reason  
+         placeholder="Reason "  maxlength="500"></textarea>
+     </div>
+    </div>
+
+  </div>
+  <br />
+
+  <div mat-dialog-actions>
+    <button class="btn btn-primary mr-2" mat-button (click)="onOkClick(Reason.value)" cdkFocusInitial>
+      OK
+    </button>&nbsp;&nbsp;
+    <button mat-button class="btn btn-light" (click)="onNoClick()">
+      Cancel
+    </button>
+  </div>
+</div>

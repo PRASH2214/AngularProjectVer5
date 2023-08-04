@@ -1,0 +1,71 @@
+<div id="tableauReport" class="page-layout simple fullwidth" fxLayout="column">
+  <!-- HEADER -->
+  <div [ngClass]="classname" fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="black-fg" fxLayout="row" fxLayoutAlign="start center">
+        <!-- <mat-icon class="secondary-text s-18">home</mat-icon>
+          class="header mat-accent-bg p-24"
+        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+        <span class="secondary-text">Dashboard</span> -->
+      </div>
+      <div class="h1 mt-5">Home</div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center start"> 
+      <button button class="save-product-FullScreen" (click)="PlayWithFullScreen()">
+        <mat-icon class="secondary-text s-30" title="Full Screen">slideshow</mat-icon>
+      </button> 
+    </div>
+  </div>
+  <!-- / HEADER -->
+  <div class="content" id="content1" >
+    <div class="full-width p-16 blogs_main">
+      <mat-accordion>
+        <mat-expansion-panel class="mb-16 comment_box"
+          *ngFor="let item of ((commentList | sortgrid: '-dtEntryDate') | sortgrid: 'varCountryName')">
+          <mat-expansion-panel-header [ngClass]="{'mat-expansion-panel-header-alert':item.commentOnTodayDate}"
+            [collapsedHeight]="'auto'" [expandedHeight]="'auto'" style="padding:15px 30px;">
+            <mat-panel-title>
+              <mat-icon class="secondary-text s-20" *ngIf="item.alertOnTodayDate">access_alarms</mat-icon>
+              <span *ngIf="!item.alertOnTodayDate"></span>
+              <div class="country_name">
+
+                <div class="comment_country">Comment :</div>
+                <div class="name_country"> {{item.varCountryName}} </div>
+                <div class="menu_name"> {{item.varMenuName}}</div>
+              </div>
+              <div class="comments"># Comments : {{item.intNoOfComment}}</div>
+              <div class="last_comments"> Last Comment : {{item.varLastCommentOn}}</div>
+            </mat-panel-title>
+
+          </mat-expansion-panel-header>
+          <div class="comment_details">
+            <ul>
+              <li class="" *ngFor="let detail of item.detail | sortgrid: '-dtEntryDate' " style="width: 100%;">
+                <div class="detals">{{detail.varComment}}
+                </div>
+                <div class="date">
+                  <span *ngIf="detail.dtAlertOn">
+                    Alert : {{detail.dtAlertOn | date:'dd/MM/yyyy'}}
+                  </span>
+                  <span *ngIf="!detail.dtAlertOn">
+                    &nbsp;
+                  </span>
+                </div>
+                <div class="date_time">Entry : {{ detail.varDate }}</div>
+              </li>
+            </ul>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+  </div>
+
+  <div class="content" id="content2"  >
+    <div class="full-width">
+      <div id="container">
+        <div id="tableauViz"></div>
+      </div>
+    </div>
+  </div>
+</div>

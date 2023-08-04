@@ -1,0 +1,77 @@
+/*-------Web-Start-by-Pramod----------*/
+
+.label-margin { margin: 0 10px 0 0; }
+.int_form_field_main .mat-form-field {
+  width: 50%;
+  }
+
+.check_form_field_main .mat-form-field-infix {
+  width: 100%;
+  display: inline-block;
+}
+.check_form_field_main .mat-form-field-infix .check_form_field {
+  width: 50%;
+  float: left;
+}
+.check_form_field_main .mat-form-field-infix .check_form_field .label_title {
+  display: inline-block;
+  min-width: 100px;
+  width: auto;
+}
+.check_form_field_main .mat-form-field-infix .check_form_field .inpt_field {
+  display: inline-block;
+  width: auto;
+}
+.check_form_field_main .mat-form-field-infix .check_form_field .inpt_field .mat-radio-button {
+  margin: 0 10px;
+}
+
+.check_form_field_main .mat-form-field-infix .check_form_field .label_title label {
+  font-size: 16px;
+  color: #000;
+}
+
+/*-------Web-End-by-Pramod----------*/
+
+/*-------Responsive-Start-by-Pramod----------*/
+
+@media screen and (max-width:979px){
+  
+ .check_form_field_main .mat-form-field-infix .check_form_field{
+    width: 100%;
+    float: left;
+    margin: 5px 0;
+}
+
+}
+
+@media screen and (max-width:767px){
+
+.int_form_field_main .mat-form-field{
+  width: 100%;
+}
+
+}
+
+@media screen and (max-width:567px){
+
+.check_form_field_main .mat-form-field-infix .check_form_field .label_title {
+  display: inline-block;
+  width: 100%;
+}
+.check_form_field_main .mat-form-field-infix .check_form_field .inpt_field {
+  display: inline-block;
+  width: 100%;
+}
+.check_form_field_main .mat-form-field-infix .check_form_field .inpt_field .mat-radio-button {
+  margin: 3px 10px !important;
+  display: inline-block;
+  width: 100%;
+}
+
+
+}
+
+
+
+/*-------Responsive-End-by-Pramod----------*/

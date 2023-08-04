@@ -1,0 +1,149 @@
+<div class="content-wrapper">
+
+    <div class="page-header">
+        <h3 class="page-title"> Add Medicine </h3>
+
+    </div>
+    <div class="row dashboardcard">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+
+
+                <div class="card-body">
+                    <form [formGroup]="MedicineForm">
+
+
+
+                        <div class=" row mt-4">
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Medicine Name<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="MedicineName"
+                                    formControlName="MedicineName" placeholder="Medicine Name"
+                                    [ngClass]="{ 'is-invalid': submitted && f.MedicineName.errors }" maxlength="250">
+                                <div *ngIf="submitted && f.MedicineName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.MedicineName.errors.required">Medicine Name is required</div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+                            <div class="col-md-6 form-group">
+
+
+                                <label for="exampleInputUsername1">Company Name<span
+                                        class="text-danger">*</span></label>
+                                <select class="form-control" name="CompanyId" formControlName="CompanyId"
+                                    [ngClass]="{ 'is-invalid': submitted && f.CompanyId.errors }">
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objhosp of allcompanylist" value="{{objhosp.CompanyId}}">
+                                        {{objhosp.CompanyName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && f.CompanyId.errors" class="invalid-feedback">
+                                    <div *ngIf="f.CompanyId.errors.required">Company is required</div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6 form-group">
+
+
+                                <label for="exampleInputUsername1">Drug<span class="text-danger">*</span> &nbsp;&nbsp; <i
+                                    class="fa fa-plus-square fa-1x" style="color: green;" title="Add Drug" (click)="AddDrug()"
+                                    aria-hidden="true"></i></label>
+                                <select class="form-control" name="DrugId" formControlName="DrugId"
+                                    [ngClass]="{ 'is-invalid': submitted && f.DrugId.errors }">
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objhosp of alldruglst" value="{{objhosp.DrugId}}">
+                                        {{objhosp.DrugName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && f.DrugId.errors" class="invalid-feedback">
+                                    <div *ngIf="f.DrugId.errors.required">Drug is required</div>
+                                </div>
+
+                            </div>
+
+
+
+
+                            <div class="col-md-6 form-group">
+
+
+                                <label for="exampleInputUsername1">Drug Type<span class="text-danger">*</span>&nbsp;&nbsp; <i
+                                    class="fa fa-plus-square fa-1x" style="color: green;" title="Add Drug Type" (click)="AddDrugType()"
+                                    aria-hidden="true"></i></label>
+                                <select class="form-control" name="DrugType" formControlName="DrugType"
+                                    [ngClass]="{ 'is-invalid': submitted && f.DrugType.errors }">
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objdugtype of alldrugtypelst" value="{{objdugtype.DrugTypeId}}">
+                                        {{objdugtype.Name}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && f.DrugType.errors" class="invalid-feedback">
+                                    <div *ngIf="f.DrugType.errors.required">Drug Type is required</div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Description<span class="text-danger">*</span></label>
+                                <textarea class="form-control" name="Description" formControlName="Description" rows="4"
+                                    spellcheck="false" placeholder="Description"
+                                    [ngClass]="{ 'is-invalid': submitted && f.Description.errors }" maxlength="500" ></textarea>
+                                <div *ngIf="submitted && f.Description.errors" class="invalid-feedback">
+                                    <div *ngIf="f.Description.errors.required">Description is required</div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+                            <div class="col-md-6 form-group mb-1">
+
+                                <div class="checkbox switcher float-left">
+                                    <label for="test1">
+                                        <span>Active/Inactive</span> <input type="checkbox" id="test1"
+                                            formControlName="Status">
+                                        <span><small></small></span>
+
+                                    </label>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-primary mr-2" (click)="Save()">Submit</button> <button
+                            class="btn btn-light" routerLink="/admin/medicine">Cancel</button>
+
+
+
+                    </form>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>

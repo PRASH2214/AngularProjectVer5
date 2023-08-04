@@ -1,0 +1,113 @@
+<div id="tableauReport" class="page-layout simple fullwidth" fxLayout="column">
+  <div [ngClass]="classname" fxLayout="row" fxLayoutAlign="start center">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <div class="black-fg" fxLayout="row" fxLayoutAlign="start center" fxHide>
+        <mat-icon class="secondary-text s-18">home</mat-icon>
+        <mat-icon class="secondary-text s-16">chevron_right</mat-icon>
+        <span class="secondary-text">Dashboard</span>
+      </div>
+      <div class="report_title h1 mt-5">{{rptName}}</div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <!-- <button button class="save-button">
+        <mat-icon class="secondary-text s-28" title="Save" (click)="btnSave_Click()">add_box</mat-icon>
+      </button>
+      <button button class="FullScreen">
+        <mat-icon class="secondary-text s-28" title="Full Screen">fullscreen</mat-icon>
+      </button> -->
+      <!-- <button button class="delete-button">
+        <mat-icon class="secondary-text s-28" title="Save" (click)="btnSave_Click()">add_box</mat-icon>
+      </button>
+      <button button class="download-button">
+        <mat-icon class="secondary-text s-28" title="Cancel" (click)="btnClear_Click()">cancel</mat-icon>
+      </button> -->
+    </div>
+  </div>
+
+  <div class="container">
+    <form [formGroup]="RoleForm">
+      <div class="row">
+        <div class="col-25">
+          <label for="varSAPCode">SAP Code</label>
+        </div>
+        <div class="col-25">
+          <input type="text" formControlName="varSAPCode" name="varSAPCode"
+            onKeyPress="if(this.value.length==10) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varSAPCode.errors }">
+          <div *ngIf="submitted && f.varSAPCode.errors" class="invalid-feedback">
+            <div *ngIf="f.varSAPCode.errors.required" style="color: red;">SAP code is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="varRoleName">Role Name</label>
+        </div>
+        <div class="col-25">
+          <input type="text" formControlName="varRoleName" name="varRoleName"
+            onKeyPress="if(this.value.length==100) return false;"
+            [ngClass]="{ 'is-invalid': submitted && f.varRoleName.errors }">
+          <div *ngIf="submitted && f.varRoleName.errors" class="invalid-feedback">
+            <div *ngIf="f.varRoleName.errors.required" style="color: red;">Role is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-25">
+          <label for="fk_CountryGlCode">Select Country</label>
+        </div>
+        <div class="col-25">
+          <select formControlName="fk_CountryGlCode">
+            <option value="">Select</option>
+            <option *ngFor="let country of countries" value={{country.intGlCode}}>
+              {{country.varCountryName}}
+            </option>
+          </select>
+          <div *ngIf="submitted && f.fk_CountryGlCode.errors" class="invalid-feedback">
+            <div *ngIf="f.fk_CountryGlCode.errors.required" style="color: red;">Country is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="chrActive">Active</label>
+        </div>
+        <div class="col-75">
+          <!-- <input type="checkbox" formControlName="chrActive" name="chrActive"
+            [ngClass]="{ 'is-invalid': submitted && f.chrActive.errors }" > -->
+            <mat-checkbox formControlName="chrActive" [checked]="chrActive" class="example-margin">
+            </mat-checkbox>
+        </div>
+      </div>
+      <div class="example-button-row">
+        <button title="Save" (click)="btnSave_Click()" mat-raised-button color="accent">Save</button>
+        <button title="Cancel" (click)="btnClear_Click()" mat-raised-button color="warn">Cancel</button>
+      </div>
+    </form>
+
+    <div class="row">
+      <div class="col-100">
+        <dx-data-grid id="gridContainer" [dataSource]="Role" keyExpr="intGlCode" [allowColumnReordering]="true"
+          [showBorders]="true">
+          <dxo-paging [pageSize]="5"></dxo-paging>
+          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+          </dxo-pager>
+          <dxo-filter-row visible="true"></dxo-filter-row>
+          <dxi-column cellTemplate="cellTemplate" caption="SAP Code" dataField="varSAPCode" alignment="center">
+          </dxi-column>
+          <div *dxTemplate="let cell of 'cellTemplate'">
+            <a style="cursor:pointer;text-decoration: underline;font-weight:bold;"
+              (click)="LB_Click(cell.data.intGlCode)">{{cell.text}}</a>
+          </div>
+          <dxi-column caption="Role Name" dataField="varRoleName" alignment="center">
+          </dxi-column>
+          <dxi-column caption="CountryName" dataField="varCountryName" alignment="center"></dxi-column>
+          <dxi-column caption="Active" dataField="Active" alignment="center"></dxi-column>
+        </dx-data-grid>
+      </div>
+    </div>
+  </div>
+
+</div>

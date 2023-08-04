@@ -1,0 +1,82 @@
+<div class="outerline">
+  <h1 mat-dialog-title>
+    <div class="sub-header">
+      <span>Patient Detail</span>
+    </div>
+  </h1>
+  <div mat-dialog-content>
+    <div class="row">
+      <div class="col-5">
+        <img [src]="imagepath" class="img-responsive img-circle" style="width:150px;height:auto;">
+      </div>
+
+      <div class="col-7">
+        <div class="row">
+
+
+
+
+          <div class="col-md-12">
+
+            <label for="exampleInputUsername1"><b>Reference Number: </b></label>
+            <label for="exampleInputUsername1" class="ml-2">{{patientdetail?.PatientReferenceNumber}}</label>
+          </div>
+
+
+
+          <div class="col-md-12">
+
+            <label for="exampleInputUsername1"><b>Name: </b></label>
+            <label for="exampleInputUsername1" class="ml-2">{{patientdetail?.FirstName}}
+              {{patientdetail?.LastName}}</label>
+          </div>
+
+
+
+
+
+          <div class="col-md-12">
+
+            <label for="exampleInputUsername1"><b>Gender: </b></label>
+            <span *ngIf="patientdetail?.GenderId==1" class="ml-2">Male</span>
+            <span *ngIf="patientdetail?.GenderId==2" class="ml-2">Female</span>
+            <span *ngIf="patientdetail?.GenderId==3" class="ml-2">Transgender</span>
+
+          </div>
+
+
+
+          <div class="col-md-12">
+            <label for="exampleInputUsername1"><b>DOB :</b></label>
+            <label for="exampleInputUsername1" class="ml-2">{{patientdetail?.DOB | date: 'dd-MM-yyyy'}}</label>
+
+          </div>
+
+
+
+
+
+
+          <div class="col-md-12">
+
+            <label for="exampleInputUsername1"><b>Mobile No: </b></label>
+            <label for="exampleInputUsername1" class="ml-2">{{patientdetail?.Mobile}}</label>
+          </div>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <br />
+
+  <div mat-dialog-actions>
+
+    <button mat-button class="btn btn-light" (click)="onNoClick()">
+      Close
+    </button>
+  </div>
+</div>

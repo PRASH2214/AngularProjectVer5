@@ -1,0 +1,11 @@
+<ng-container *ngIf="visible">
+
+    <mat-progress-bar color="accent" [bufferValue]="bufferValue" [mode]="mode" [value]="value"></mat-progress-bar>
+
+</ng-container>
+<ng-container *ngIf="spinnerVisible">
+    <div style="background: white; position: fixed; top:0;left:0; bottom: 0; height: 100%; width: 100%;opacity: 0.5;">
+        <mat-progress-spinner class="spinner-position" diameter=50 [mode]="mode" [value]="value">
+        </mat-progress-spinner>
+    </div>
+</ng-container>

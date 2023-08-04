@@ -1,0 +1,65 @@
+<ng-container *ngIf="!item.hidden">
+
+    <!-- normal collapse -->
+    <a class="nav-link" [ngClass]="item.classes" *ngIf="!item.varURL && !item.function"
+       (click)="toggleOpen($event)" matRipple>
+        <ng-container *ngTemplateOutlet="itemContent"></ng-container>
+    </a>
+
+    
+    <a class="nav-link" [ngClass]="item.classes" *ngIf="item.varURL && !item.externalUrl && !item.function"
+       (click)="toggleOpen($event)"
+       [routerLink]="[item.varURL]" [routerLinkActive]="['active', 'mat-accent-bg']"
+       [routerLinkActiveOptions]="{exact: item.exactMatch || false}"
+       [target]="item.openInNewTab ? '_blank' : '_self'" matRipple>
+        <ng-container *ngTemplateOutlet="itemContent"></ng-container>
+    </a>
+
+   
+    <a class="nav-link" [ngClass]="item.classes" *ngIf="item.varURL && item.externalUrl && !item.function"
+       (click)="toggleOpen($event)"
+       [href]="item.varURL" [target]="item.openInNewTab ? '_blank' : '_self'" matRipple>
+        <ng-container *ngTemplateOutlet="itemContent"></ng-container>
+    </a>
+
+   
+    <span class="nav-link" [ngClass]="item.classes" *ngIf="!item.varURL && item.function"
+          (click)="toggleOpen($event);item.function()" matRipple>
+        <ng-container *ngTemplateOutlet="itemContent"></ng-container>
+    </span>
+
+   
+    <a class="nav-link" [ngClass]="item.classes" *ngIf="item.varURL && !item.externalUrl && item.function"
+       (click)="toggleOpen($event);item.function()"
+       [routerLink]="[item.varURL]" [routerLinkActive]="['active', 'mat-accent-bg']"
+       [routerLinkActiveOptions]="{exact: item.exactMatch || false}" matRipple>
+        <ng-container *ngTemplateOutlet="itemContent"></ng-container>
+    </a>
+
+   
+    <a class="nav-link" [ngClass]="item.classes" *ngIf="item.varURL && item.externalUrl && item.function"
+       (click)="toggleOpen($event);item.function()"
+       [href]="item.varURL" [target]="item.openInNewTab ? '_blank' : '_self'" matRipple>
+        <ng-container *ngTemplateOutlet="itemContent"></ng-container>
+    </a>
+
+     <ng-template #itemContent>
+        <mat-icon class="nav-link-icon" *ngIf="item.varIconPath">{{item.varIconPath}}</mat-icon>
+        <span class="nav-link-title" [translate]="item.translate">{{item.varMenuName}}</span>
+        <span class="nav-link-badge" *ngIf="item.badge" [translate]="item.badge.translate"
+              [ngStyle]="{'background-color': item.badge.bg,'color': item.badge.fg}">
+            {{item.badge.title}}
+        </span>
+        <mat-icon class="collapsable-arrow">keyboard_arrow_right</mat-icon>
+    </ng-template>
+
+    <div class="children" [@slideInOut]="isOpen">
+        <ng-container *ngFor="let item of item.children">
+            <fuse-nav-vertical-item *ngIf="item.varMenuType=='item'" [item]="item"></fuse-nav-vertical-item>
+            <fuse-nav-vertical-collapsable *ngIf="item.varMenuType=='collapsable'"
+                                           [item]="item"></fuse-nav-vertical-collapsable>
+            <fuse-nav-vertical-group *ngIf="item.varMenuType=='group'" [item]="item"></fuse-nav-vertical-group>
+        </ng-container>
+    </div>
+
+</ng-container>

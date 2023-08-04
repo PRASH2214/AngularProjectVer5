@@ -1,0 +1,63 @@
+<div class="dialog-content-wrapper">
+  <mat-toolbar class="mat-accent-bg m-0 mat-dialog-draggable-title" mat-dialog-draggable-title>
+    <mat-toolbar-row fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <span class="title dialog-title">Add Comment</span>
+      <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close dialog">
+        <mat-icon title="Close">close</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div mat-dialog-content class="p-8 m-0" fusePerfectScrollbar>
+    <form name="eventForm" class="event-form w-100-p" [formGroup]="eventForm" fxLayout="column" fxFlex>
+      <mat-form-field class="w-100-p">
+        <textarea matInput formControlName="comment" placeholder="Comment" mat-maxlength="250" max-rows="4" required>
+        </textarea>
+      </mat-form-field>
+      <mat-form-field class="w-100-p">
+        <input matInput [matDatepicker]="dp3" formControlName="alertOn" placeholder="Alert Me On" [min]="minDate">
+        <mat-datepicker-toggle matSuffix [for]="dp3" class="pr-20">
+          <mat-icon class="s-30 CalendarIcon-M5" matDatepickerToggleIcon>access_alarm</mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="stretch center">
+    <button mat-raised-button (click)="saveComment()" class="save-button mat-accent" [disabled]="eventForm.invalid"
+      aria-label="SAVE">
+      SAVE
+    </button>
+    <button mat-raised-button (click)="sendMail()" class="save-button mat-accent"
+      [disabled]="commentList == null || commentList.length == 0" aria-label="MAIL">
+      MAIL
+    </button>
+  </div>
+  <!-- <div mat-dialog-actions class="m-0 p-16" fxLayout="row" fxLayoutAlign="space-between center">
+
+  </div> -->
+
+  <div fusePerfectScrollbar style="max-height: 27vw;" *ngIf="commentList">
+    <div *ngFor="let item of commentList" class="pt-16 pr-16 pl-16 pb-0" style="border-bottom: 1px solid #0000001f;">
+      <div fxLayout="row">
+        <div class="info bullet-icon" fxFlex fxFlexLayout="column">
+          {{item.varComment}}
+        </div>
+        <div class="actions" fxLayout="row" fxLayoutAlign="right">
+          <button mat-icon-button (click)="deleteComment(item.intGlCode)">
+            <mat-icon class="secondary-text">delete</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div fxLayout="row" class="secondary-text">
+        <div fxFlex>
+          {{item.dtAlertOn | date:'dd/MM/yyyy'}}
+        </div>
+        <div>
+          {{item.dtEntryDate | date:'dd/MM/yyyy hh:mm a'}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

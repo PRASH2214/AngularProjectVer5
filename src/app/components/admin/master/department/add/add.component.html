@@ -1,0 +1,159 @@
+<div class="content-wrapper">
+
+    <div class="page-header">
+        <h3 class="page-title"> Add Department </h3>
+
+    </div>
+    <div class="row dashboardcard">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+
+
+                <div class="card-body">
+                    <form [formGroup]="userForm">
+
+
+
+                        <div class=" row mt-4">
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Department Name<span class="text-danger">*</span>
+                                </label>
+                                <input type="text" (keypress)="avoidspecialchar($event)" autocomplete="off"
+                                    class="form-control" name="DepartmentName" formControlName="DepartmentName"
+                                    placeholder="Department Name"
+                                    [ngClass]="{ 'is-invalid': submitted && f.DepartmentName.errors }" maxlength="250"
+                                    UserNameOnly>
+                                <div *ngIf="submitted && f.DepartmentName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.DepartmentName.errors.required">Department Name is required</div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Hospital<span class="text-danger">*</span></label>
+
+
+                                <select class="form-control" name="HospitalId" formControlName="HospitalId"
+                                    [ngClass]="{ 'is-invalid': submitted && f.HospitalId.errors }" #hospitalddl
+                                    (change)='onHospitalSelected(hospitalddl.value)'>
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objhosp of allhospitallst" value="{{objhosp.HospitalId}}">
+                                        {{objhosp.HospitalName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && f.HospitalId.errors" class="invalid-feedback">
+                                    <div *ngIf="f.HospitalId.errors.required">Hospital is required</div>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Branch<span class="text-danger">*</span></label>
+                                <select class="form-control" name="BranchId" formControlName="BranchId"
+                                    [ngClass]="{ 'is-invalid': submitted && f.BranchId.errors }">
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objbrach of allbrachlst" value="{{objbrach.BranchId}}">
+                                        {{objbrach.BranchName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && f.BranchId.errors" class="invalid-feedback">
+                                    <div *ngIf="f.BranchId.errors.required">Branch is required</div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Contact Mobile<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" (keypress)="avoidspecialchar($event)" autocomplete="off"
+                                    class="form-control" name="DepartmentContactMobile" maxlength="10" numbersOnly
+                                    formControlName="DepartmentContactMobile" rows="4" spellcheck="false"
+                                    placeholder="Contact Mobile"
+                                    [ngClass]="{ 'is-invalid': submitted && f.DepartmentContactMobile.errors }" />
+                                <div *ngIf="submitted && f.DepartmentContactMobile.errors" class="invalid-feedback">
+                                    <div *ngIf="f.DepartmentContactMobile.errors.required">Contact Mobile is required
+                                    </div>
+
+                                    <div *ngIf="f.DepartmentContactMobile.errors.pattern">Enter only number.</div>
+
+                                    <div *ngIf="f.DepartmentContactMobile.errors.minlength">Enter valid number.</div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Department link <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="HospitalDepartmentLink"
+                                    formControlName="HospitalDepartmentLink" placeholder="Department Link"
+                                    [ngClass]="{ 'is-invalid': submitted && f.HospitalDepartmentLink.errors }"
+                                    maxlength="500">
+                                <div *ngIf="submitted && f.HospitalDepartmentLink.errors" class="invalid-feedback">
+                                    <div *ngIf="f.HospitalDepartmentLink.errors.required">Department link is required
+                                    </div>
+                                    <div *ngIf="f.HospitalDepartmentLink.errors.pattern">Enter valid link.</div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Amount<span class="text-danger">*</span></label>
+                                <input type="number" autocomplete="off" class="form-control" name="Amount" step=".01"
+                                    formControlName="Amount" rows="4" spellcheck="false" placeholder="Amount"
+                                    [ngClass]="{ 'is-invalid': submitted && f.Amount.errors }" />
+                                <div *ngIf="submitted && f.Amount.errors" class="invalid-feedback">
+                                    <div *ngIf="f.Amount.errors.required">Amount is required</div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="col-md-6 form-group mb-1">
+
+                                <div class="checkbox switcher float-left">
+                                    <label for="test1">
+                                        <span>Active/Inactive</span> <input type="checkbox" id="test1"
+                                            formControlName="Status">
+                                        <span><small></small></span>
+
+                                    </label>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-primary mr-2" (click)="Save()">Submit</button> <button
+                            class="btn btn-light" routerLink="/admin/department">Cancel</button>
+
+
+
+                    </form>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>

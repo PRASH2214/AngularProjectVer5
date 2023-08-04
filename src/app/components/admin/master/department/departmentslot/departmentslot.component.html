@@ -1,0 +1,105 @@
+<div class="content-wrapper">
+
+    <div class="page-header">
+        <h3 class="page-title"> Add Slot </h3>
+
+    </div>
+    <div class="row dashboardcard">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+
+
+                <div class="card-body">
+
+
+
+
+                    <div class="col-md-6 form-group">
+                        <label for="exampleInputUsername1">Days<span class="text-danger">*</span></label>
+
+
+                        <select class="form-control" name="DaysId" [(ngModel)]="DaysId" #daysddl
+                            (change)='onDaysSelected(daysddl.value)'>
+                            <option value="" selected="selected">Select</option>
+                            <option *ngFor="let objdays of alldayslst" value="{{objdays.DayId}}">
+                                {{objdays.DayName}}
+                            </option>
+                        </select>
+
+
+
+                    </div>
+
+
+
+                    <div class="row" *ngIf="allsloatlst?.length!=0">
+
+                        <div class="col-12">
+                            <div class="table-responsive">
+                                <table class="table table-striped ">
+
+                                    <thead class="thead-dark">
+                                        <tr>
+
+
+                                            <th> Slot Start </th>
+                                            <th> Slot End </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let row of allsloatlst">
+
+                                            <td>{{ tConverttime(row.slotFromTime)}}
+                                            </td>
+
+
+                                            <td>
+
+                                                {{tConverttime(row.slotEndTime)}}
+
+                                            </td>
+
+
+                                            <td>
+                                                <input type="checkbox" [(ngModel)]="row.isActive" />
+
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+                    <br />
+                    <br />
+                    <button type="submit" class="btn btn-primary mr-2" (click)="Save()"
+                        *ngIf="allsloatlst?.length!=0">Submit</button> <button class="btn btn-light"
+                        routerLink="/admin/department">Cancel</button>
+
+
+
+
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>

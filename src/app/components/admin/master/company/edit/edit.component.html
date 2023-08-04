@@ -1,0 +1,262 @@
+<div class="content-wrapper">
+
+    <div class="page-header">
+        <h3 class="page-title"> Update Company </h3>
+
+    </div>
+    <div class="row dashboardcard">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+
+
+                <div class="card-body">
+                    <form [formGroup]="userForm">
+
+
+
+                        <div class=" row mt-4">
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Company Name<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="CompanyName"
+                                    formControlName="CompanyName" placeholder="Company Name"
+                                    [ngClass]="{ 'is-invalid': submitted && f.CompanyName.errors }" maxlength="250"
+                                    UserNameOnly>
+                                <div *ngIf="submitted && f.CompanyName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.CompanyName.errors.required">Company Name is required</div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+                            <div class="col-md-6 form-group">
+
+
+                                <label for="exampleInputUsername1">State<span class="text-danger">*</span></label>
+                                <select class="form-control" name="StateId" formControlName="StateId"
+                                    [ngClass]="{ 'is-invalid': submitted && f.StateId.errors }" #stateddl
+                                    (change)='onStateSelected(stateddl.value)'>
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objstate of allstatelst" value="{{objstate.stateId}}">
+                                        {{objstate.stateName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && f.StateId.errors" class="invalid-feedback">
+                                    <div *ngIf="f.StateId.errors.required">State is required</div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">District<span class="text-danger">*</span></label>
+
+
+                                <select class="form-control" name="DistrictId" formControlName="DistrictId"
+                                    [ngClass]="{ 'is-invalid': submitted && f.DistrictId.errors }" #districtdll
+                                    (change)='onDistrictSelected(districtdll.value)'>
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objdist of alldistrictlst" value="{{objdist.districtId}}">
+                                        {{objdist.districtName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && f.DistrictId.errors" class="invalid-feedback">
+                                    <div *ngIf="f.DistrictId.errors.required">District is required</div>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">City<span class="text-danger">*</span></label>
+                                <select class="form-control" name="CityId" formControlName="CityId"
+                                    [ngClass]="{ 'is-invalid': submitted && f.CityId.errors }">
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objcity of allcitylst" value="{{objcity.cityId}}">
+                                        {{objcity.cityName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && f.CityId.errors" class="invalid-feedback">
+                                    <div *ngIf="f.CityId.errors.required">City is required</div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Company Address<span
+                                        class="text-danger">*</span></label>
+                                <textarea class="form-control" name="CompanyAddress" formControlName="CompanyAddress"
+                                    rows="4" spellcheck="false" placeholder="Company Address"
+                                    [ngClass]="{ 'is-invalid': submitted && f.CompanyAddress.errors }"
+                                    maxlength="250"></textarea>
+                                <div *ngIf="submitted && f.CompanyAddress.errors" class="invalid-feedback">
+                                    <div *ngIf="f.CompanyAddress.errors.required">Company Address is required</div>
+                                </div>
+
+                            </div>
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Company License Number<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="CompanyLicenseNumber"
+                                    formControlName="CompanyLicenseNumber" rows="4" spellcheck="false" maxlength="70"
+                                    placeholder="Company License Number"
+                                    [ngClass]="{ 'is-invalid': submitted && f.CompanyLicenseNumber.errors }" />
+                                <div *ngIf="submitted && f.CompanyLicenseNumber.errors" class="invalid-feedback">
+                                    <div *ngIf="f.CompanyLicenseNumber.errors.required">Company License Number is
+                                        required</div>
+                                </div>
+
+                            </div>
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">SPOC Name<span class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="SpocName"
+                                    formControlName="SpocName" rows="4" spellcheck="false" placeholder="SPOC Name"
+                                    [ngClass]="{ 'is-invalid': submitted && f.SpocName.errors }" maxlength="99"
+                                    UserNameOnly />
+                                <div *ngIf="submitted && f.SpocName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.SpocName.errors.required">SPOC Name is
+                                        required</div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">SPOC Mobile<span class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="SpocMobile"
+                                    formControlName="SpocMobile" rows="4" spellcheck="false" maxlength="10" numbersOnly
+                                    placeholder="SPOC Mobile"
+                                    [ngClass]="{ 'is-invalid': submitted && f.SpocMobile.errors }" />
+                                <div *ngIf="submitted && f.SpocMobile.errors" class="invalid-feedback">
+                                    <div *ngIf="f.SpocMobile.errors.required">SPOC Mobile number is
+                                        required</div>
+
+                                    <div *ngIf="f.SpocMobile.errors.pattern">Enter only number.</div>
+                                    <div *ngIf="f.SpocMobile.errors.minlength">Enter valid number.</div>
+                                </div>
+
+                            </div>
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Admin Name<span class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="AdminName"
+                                    formControlName="AdminName" rows="4" spellcheck="false" placeholder="Admin Name"
+                                    [ngClass]="{ 'is-invalid': submitted && f.AdminName.errors }" maxlength="100"
+                                    UserNameOnly />
+                                <div *ngIf="submitted && f.AdminName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.AdminName.errors.required">Admin Name is
+                                        required</div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Admin Mobile<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="AdminMobile"
+                                    maxlength="10" numbersOnly formControlName="AdminMobile" rows="4" spellcheck="false"
+                                    placeholder="Admin Mobile"
+                                    [ngClass]="{ 'is-invalid': submitted && f.AdminMobile.errors }" />
+                                <div *ngIf="submitted && f.AdminMobile.errors" class="invalid-feedback">
+                                    <div *ngIf="f.AdminMobile.errors.required">Admin mobile is
+                                        required</div>
+
+
+                                    <div *ngIf="f.AdminMobile.errors.pattern">Enter only number.</div>
+                                    <div *ngIf="f.AdminMobile.errors.minlength">Enter valid number.</div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Company Web link<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="CompanyWebLink"
+                                    formControlName="CompanyWebLink" placeholder="Company Web link"
+                                    [ngClass]="{ 'is-invalid': submitted && f.CompanyWebLink.errors }" maxlength="500">
+                                <div *ngIf="submitted && f.CompanyWebLink.errors" class="invalid-feedback">
+                                    <div *ngIf="f.CompanyWebLink.errors.required">Company Web link is required</div>
+                                    <div *ngIf="f.CompanyWebLink.errors.pattern">Enter valid link.</div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">PinCode<span class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="PinCode" maxlength="6"
+                                    numbersOnly formControlName="PinCode" rows="4" spellcheck="false"
+                                    placeholder="PinCode" [ngClass]="{ 'is-invalid': submitted && f.PinCode.errors }" />
+                                <div *ngIf="submitted && f.PinCode.errors" class="invalid-feedback">
+                                    <div *ngIf="f.PinCode.errors.required">PinCode is required</div>
+                                    <div *ngIf="f.PinCode.errors.pattern">Enter only number.</div>
+                                    <div *ngIf="f.PinCode.errors.minlength">Enter valid Pin code.</div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 form-group mb-1">
+
+                                <div class="checkbox switcher float-left">
+                                    <label for="test1">
+                                        <span>Active/Inactive</span> <input type="checkbox" id="test1"
+                                            formControlName="Status">
+                                        <span><small></small></span>
+
+                                    </label>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-primary mr-2" (click)="Save()">Submit</button> <button
+                            class="btn btn-light" routerLink="/admin/company">Cancel</button>
+
+
+
+                    </form>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>

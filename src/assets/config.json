@@ -1,0 +1,7 @@
+{
+    "apiUrlPath": "http://172.16.8.202:4202/eCubixiSightAPI/api/",
+    "serverIP": "https://basf-isight-bi.ecubix.com",
+    "theme": "blue",
+    "version": "Beta Version 20.1.10000",
+    "asset_dashboard_id" : "a933dfec-869e-4026-b70c-6ce0ced99677"
+}

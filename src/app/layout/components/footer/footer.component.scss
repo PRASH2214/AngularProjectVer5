@@ -1,0 +1,31 @@
+@import "src/@fuse/scss/fuse";
+.footer_logo{
+    font-size: 12px; padding-left: 25px;font-weight: normal;
+
+    @include media-breakpoint('lt-md') {
+        padding-left: 0;
+    }
+}
+:host {
+    display: flex;
+    flex: 0 0 auto;
+    z-index: 3;
+
+    .mat-toolbar {
+        height: 30px;
+        background: inherit;
+        color: inherit;
+        box-shadow: 0px -1px 1px -1px rgba(0, 0, 0, 0.2), 0px 0px 1px 0px rgba(0, 0, 0, 0.14), 0px -1px 3px 0px rgba(0, 0, 0, 0.12);
+
+        img{ 
+            max-width: 65px;
+            margin-left: 10px;
+            margin-top: 4px;
+        }
+    }
+
+    &.above {
+        position: relative;
+        z-index: 99;
+    }
+}

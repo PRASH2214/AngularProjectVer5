@@ -1,0 +1,208 @@
+<div class="content-wrapper">
+
+  <div class="page-header">
+    <h3 class="page-title"> Appointment Summary </h3>
+
+  </div>
+  <div class="row dashboardcard">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+
+
+          <div class="row status-switch">
+
+
+
+
+            <div class="col-md-4 col-12 form-group">
+              <label for="exampleInputUsername1">From<span class="text-danger">*</span></label><br />
+              <mat-form-field appearance="fill" style="height: 80px;">
+
+                <input matInput [matDatepicker]="dp1" [formControl]="date1">
+                <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                <mat-datepicker #dp1 startView="multi-year" (yearSelected)="chosenYearHandler1($event)"
+                  (monthSelected)="chosenMonthHandler1($event, dp1)" panelClass="example-month-picker">
+                </mat-datepicker>
+              </mat-form-field>
+
+
+            </div>
+            <div class="col-md-4 col-12 form-group">
+              <label for="exampleInputUsername1">To<span class="text-danger">*</span></label><br />
+              <mat-form-field appearance="fill">
+
+                <input matInput [matDatepicker]="dp2" [formControl]="date2">
+                <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                <mat-datepicker #dp2 startView="multi-year" (yearSelected)="chosenYearHandler2($event)"
+                  (monthSelected)="chosenMonthHandler2($event, dp2)" panelClass="example-month-picker">
+                </mat-datepicker>
+              </mat-form-field>
+
+
+            </div>
+
+
+            <div class="col-md-4 col-12 form-group">
+              <label for="exampleInputUsername1">Hospital<span class="text-danger">*</span></label>
+              <select class="form-control" name="HospitalId" [formControl]="HospitalId" #hosppitalddl>
+                <option value="0" selected="selected">All</option>
+                <option *ngFor="let objhop of allhospitallst" value="{{objhop.HospitalId}}">
+                  {{objhop.HospitalName}}
+                </option>
+              </select>
+            </div>
+
+
+            <div class="col-md-4 col-12 form-group">
+
+              <label class="mt-3">
+                <input type="radio" name="type" (click)="typechange(1)">
+                &nbsp; <span> Patient Details </span>
+              </label>&nbsp; &nbsp;&nbsp;
+
+              <label class="mt-3">
+                <input type="radio" name="type" (click)="typechange(2)">
+                &nbsp; <span>MR Details</span>
+              </label>
+            </div>
+            <div class="col-md-4 col-12 mb-3 ">
+
+              <button type="submit" class="btn btn-primary btn-fw w-m-50"
+                (click)="search(dp1,dp2,hosppitalddl)">View</button>
+
+
+            </div>
+
+
+            <div class="col-md-4 col-12 mb-3 ">
+
+              <button type="submit" class="btn btn-primary btn-fw w-m-50 ml-2"
+                (click)="captureScreenpdf(dp1,dp2,hosppitalddl)">Download</button>
+
+            </div>
+
+          </div>
+          <div class="row mt-2" *ngIf="dispreporttype==1">
+
+            <div class="col-12">
+              <div class="table-responsive">
+                <table class="table table-striped ">
+
+                  <thead class="thead-dark">
+                    <tr>
+                      <th> Sr. no </th>
+                      <th> Hospital Name </th>
+
+                      <th> Branch </th>
+                      <th> Doctor Name </th>
+                      <th> Department </th>
+                      <th> Appointment Type </th>
+                      <th> Month year </th>
+                      <th> Total Patient Appointments </th>
+                      <th> Total Patient Consulted </th>
+
+                      <th> Total Fees Amount </th>
+                      <th> Total Refund Amount </th>
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of Searchlst;let index =index;let isOdd=odd;let isEven=even;let i=index"
+                      [class.table-active]="isOdd" [class.table-active1]="isEven">
+                      <td class="py-1">
+                        {{i + 1}}
+                      </td>
+                      <td>{{row.hospitalName}} </td>
+                      <td>{{row.branchName}} </td>
+                      <td>{{row.doctorName}} </td>
+                      <td>{{row.departmentName}} </td>
+                      <td>{{row.appointmentType==1 ? "Online Appointment":"Offline Appointment"}}</td>
+                      <td>{{row.monthYear | date: 'MM-yyyy'}} </td>
+                      <td>{{row.totalPatientAppointments}} </td>
+                      <td>{{row.totalPatientConsulted}} </td>
+                      <td>{{row.totalFeesAmount}} </td>
+                      <td>{{row.totalRefundAmount}} </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+
+
+          </div>
+
+
+
+
+          <div class="row mt-2" *ngIf="dispreporttype==2">
+
+            <div class="col-12">
+              <div class="table-responsive">
+                <table class="table table-striped ">
+
+                  <thead class="thead-dark">
+                    <tr>
+                      <th> Sr. no </th>
+                      <th> Hospital Name </th>
+
+                      <th> Branch </th>
+                      <th> Doctor Name </th>
+                      <th> Department </th>
+                      <th> Appointment Type </th>
+                      <th> Month year </th>
+
+
+                      <th> Total MR Appointment </th>
+                      <th> Total MR Consulted</th>
+
+
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of Searchlst;let index =index;let isOdd=odd;let isEven=even;let i=index"
+                      [class.table-active]="isOdd" [class.table-active1]="isEven">
+                      <td class="py-1">
+                        {{i + 1}}
+                      </td>
+                      <td>{{row.hospitalName}} </td>
+                      <td>{{row.branchName}} </td>
+                      <td>{{row.doctorName}} </td>
+                      <td>{{row.departmentName}} </td>
+                      <td>{{row.appointmentType==1 ? "Online Appointment":"Offline Appointment"}}</td>
+                      <td>{{row.monthYear | date: 'MM-yyyy'}} </td>
+                      <td>{{row.totalMRAppointments}} </td>
+                      <td>{{row.totalMRConsulted}} </td>
+
+                    </tr>
+
+                  </tbody>
+                </table>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+<style>
+  .modal-content {
+    max-width: 1240px !important;
+  }
+</style>

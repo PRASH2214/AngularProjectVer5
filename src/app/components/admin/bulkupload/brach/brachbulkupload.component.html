@@ -1,0 +1,169 @@
+<div class="content-wrapper">
+
+  <div class="page-header">
+    <h3 class="page-title">Brach Bulk Upload</h3>
+
+  </div>
+  <div class="row dashboardcard">
+    <div class="col-md-12 grid-margin stretch-card">
+      <div class="card">
+
+
+        <div class="card-body">
+
+          <div class="col-md-12 text-right">
+            <a href="assets/excel/Branch_Format.xlsx">Sample Excel File</a>
+          </div>
+
+
+          <div class="col-md-6 form-group">
+
+            <div class="input-group col-xs-12">
+              <input type="file" #myInput class="form-control file-upload-info" placeholder="Upload Image"
+                accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                (change)="onFileChange($event)" />
+
+            </div>
+            <label id="confirm_password-error" class="error mt-2 text-danger" for="confirm_password">
+              <small class="w-100 d-block mb-1"> 1. Format xlsx., .xls</small>
+              <small class="w-100 d-block mb-1"> 2. Size less than 5MB</small>
+
+            </label>
+            <div class="input-group col-xs-12">
+
+              <span class="input-group-append">
+                <button class="file-upload-browse btn btn-primary" (click)="checkdata()" type="button">Check
+                  Data</button>
+              </span>
+
+              <span class="input-group-append ml-2" [hidden]="!saveshow">
+                <button class="file-upload-browse btn btn-primary" (click)="Save()" type="button">Save</button>
+              </span>
+
+
+              <span class="input-group-append ml-2">
+                <button class="file-upload-browse btn btn-primary" (click)="Decline()" type="button">Decline</button>
+              </span>
+
+            </div>
+            <div class="clearfix"> </div>
+
+
+
+          </div>
+
+
+
+
+
+
+        </div>
+        <hr>
+
+
+      </div>
+
+
+
+
+    </div>
+
+
+
+
+    <div class="table-responsive" [hidden]="errorlistshow">
+      <table class="table table-striped ">
+
+        <thead class="thead-dark">
+          <tr>
+
+            <th> Sr. no </th>
+            <th>Reason</th>
+            <th>Hospital Name</th>
+            <th> Brach Name </th>
+
+            <th>State Name</th>
+            <th>District Name </th>
+            <th> City Name </th>
+            <th> Brach Hospital Address </th>
+
+            <th> Brach License Number </th>
+            <th> Contact Name </th>
+            <th> Contact Mobile </th>
+            <th> PinCode </th>
+            <th> Brach Link </th>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of errorlist ;let index =index;let isOdd=odd;let isEven=even;let i=index">
+            <td class="py-1" [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              {{i + 1}}
+            </td>
+
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">{{row.reason}} </td>
+
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.hospitalName" style="width: 200px;" />
+            </td>
+
+
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.branchName" style="width: 200px;" />
+            </td>
+
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.stateName" style="width: 200px;" />
+            </td>
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+
+              <input type="text" class="form-control" [(ngModel)]="row.districtName" style="width: 200px;" />
+            </td>
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.cityName" style="width: 200px;" />
+
+            </td>
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+
+              <input type="text" class="form-control" [(ngModel)]="row.branchHospitalAddress" style="width: 200px;" />
+            </td>
+
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.branchHospitalLicenseNumber"
+                style="width: 200px;" />
+            </td>
+
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.contactName" style="width: 200px;" />
+
+            </td>
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.contactMobile" style="width: 200px;"
+                maxlength="10" />
+            </td>
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.pinCode" style="width: 200px;" />
+            </td>
+
+            <td [ngClass]="{class1: row.isValid ===false, class2: row.isValid ===true}">
+              <input type="text" class="form-control" [(ngModel)]="row.branchHospitalLink" style="width: 200px;" />
+
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+</div>

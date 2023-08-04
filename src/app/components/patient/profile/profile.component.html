@@ -1,0 +1,211 @@
+<div class="content-wrapper">
+
+    <div class="page-header">
+        <h3 class="page-title"> Patient Profile</h3>
+
+    </div>
+    <div class="row dashboardcard">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+
+
+                <div class="card-body">
+                    <form [formGroup]="pateintForm">
+
+
+
+                        <div class=" row mt-4">
+
+
+
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">First Name<span
+                                        class="text-danger">*</span></label><br />
+                                <label for="exampleInputUsername1">{{Patientinfo?.FirstName}}</label>
+                            </div>
+
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Last Name<span
+                                        class="text-danger">*</span></label><br />
+                                <label for="exampleInputUsername1">{{Patientinfo?.LastName}}</label>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Gender<span
+                                        class="text-danger">*</span></label><br />
+                                <span *ngIf="Patientinfo?.GenderId==1">Male</span>
+                                <span *ngIf="Patientinfo?.GenderId==2">Female</span>
+                                <span *ngIf="Patientinfo?.GenderId==3">Transgender</span>
+
+                            </div>
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Mobile<span
+                                        class="text-danger">*</span></label><br />
+
+                                <label for="exampleInputUsername1"> {{Patientinfo?.Mobile}}</label>
+                            </div>
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Email Address<span
+                                        class="text-danger">*</span></label><br />
+                                <label for="exampleInputUsername1">{{Patientinfo?.EmailAddress}}</label>
+                            </div>
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">DOB<span class="text-danger">*</span></label><br />
+                                <label for="exampleInputUsername1">{{Patientinfo?.DOB |date:'dd/MM/yyyy'}}</label>
+
+                            </div>
+
+                            <div class="col-md-6 form-group">
+
+
+                                <label for="exampleInputUsername1">State<span class="text-danger">*</span></label>
+                                <select class="form-control" name="StateId" formControlName="StateId"
+                                    [ngClass]="{ 'is-invalid': submitted && h.StateId.errors }" #stateddl
+                                    (change)='onStateSelected(stateddl.value)'>
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objstate of allstatelst" value="{{objstate.stateId}}">
+                                        {{objstate.stateName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && h.StateId.errors" class="invalid-feedback">
+                                    <div *ngIf="h.StateId.errors.required">State is required</div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">District<span class="text-danger">*</span></label>
+
+
+                                <select class="form-control" name="DistrictId" formControlName="DistrictId"
+                                    [ngClass]="{ 'is-invalid': submitted && h.DistrictId.errors }" #districtdll
+                                    (change)='onDistrictSelected(districtdll.value)'>
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objdist of alldistrictlst" value="{{objdist.districtId}}">
+                                        {{objdist.districtName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && h.DistrictId.errors" class="invalid-feedback">
+                                    <div *ngIf="h.DistrictId.errors.required">District is required</div>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">City<span class="text-danger">*</span></label>
+                                <select class="form-control" name="CityId" formControlName="CityId"
+                                    [ngClass]="{ 'is-invalid': submitted && h.CityId.errors }">
+                                    <option value="" selected="selected">Select</option>
+                                    <option *ngFor="let objcity of allcitylst" value="{{objcity.cityId}}">
+                                        {{objcity.cityName}}
+                                    </option>
+                                </select>
+                                <div *ngIf="submitted && h.CityId.errors" class="invalid-feedback">
+                                    <div *ngIf="h.CityId.errors.required">City is required</div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Address<span class="text-danger">*</span></label>
+                                <textarea class="form-control" name="PatientAddress" formControlName="PatientAddress"
+                                    rows="4" spellcheck="false" placeholder="Address"
+                                    [ngClass]="{ 'is-invalid': submitted && h.PatientAddress.errors }"></textarea>
+                                <div *ngIf="submitted && h.PatientAddress.errors" class="invalid-feedback">
+                                    <div *ngIf="h.PatientAddress.errors.required">Address is required</div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">PinCode<span class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="PinCode" maxlength="6"
+                                    numbersOnly formControlName="PinCode" rows="4" spellcheck="false"
+                                    placeholder="PinCode" [ngClass]="{ 'is-invalid': submitted && h.PinCode.errors }" />
+                                <div *ngIf="submitted && h.PinCode.errors" class="invalid-feedback">
+                                    <div *ngIf="h.PinCode.errors.required">PinCode is required</div>
+
+
+                                    <div *ngIf="h.PinCode.errors.pattern">Enter only number.</div>
+                                    <div *ngIf="h.PinCode.errors.minlength">Enter valid number.</div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-primary mr-2" (click)="Save()">Submit</button> <button
+                            class="btn btn-light" routerLink="/patient/doctor">Cancel</button>
+
+
+
+                    </form>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>

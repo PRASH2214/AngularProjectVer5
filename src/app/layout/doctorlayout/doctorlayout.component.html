@@ -1,0 +1,167 @@
+<div [ngClass]="activeclassName1">
+  <!-- navbar -->
+  <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row ">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+      <a class="navbar-brand brand-logo"><img src="assets/images/ecubix-logo.svg" alt="logo" /></a>
+      <a class="navbar-brand brand-logo-mini"><img src="assets/images/ecubix-logo-mini.jpeg" alt="logo" /></a>
+    </div>
+    <div class="navbar-menu-wrapper d-flex align-items-stretch">
+      <button class="navbar-toggler navbar-toggler align-self-center" type="button" (click)="toggle1()"
+        data-toggle="minimize">
+        <span class="mdi mdi-menu text-white"></span>
+      </button>
+
+      <ul class="navbar-nav navbar-nav-right">
+
+        <li class="nav-item nav-profile dropdown">
+          <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown"
+            aria-expanded="false">
+            <div class="nav-profile-img">
+              <img [src]="imagestring" alt="image">
+              <span class="availability-status online"></span>
+            </div>
+            <div class="nav-profile-text text-white">
+              <p class="mb-1 text-white">{{master.CurrentUser.model.firstName}} {{master.CurrentUser.model.lastName}}
+              </p>
+            </div>
+          </a>
+          <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/doctor/profilepic">
+              <i class="fa fa-cog mr-2" aria-hidden="true" style=" color:#18b3de;"></i>Profile Picture </a>
+            <a class="dropdown-item" (click)="logout()">
+              <i class="mdi mdi-logout mr-2 text-primary" style=" color:#18b3de;"></i> Signout </a>
+          </div>
+        </li>
+
+
+
+      </ul>
+      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+        data-toggle="offcanvas" (click)="toggle()">
+        <span class="mdi mdi-menu"></span>
+      </button>
+    </div>
+  </nav>
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.html -->
+    <nav [ngClass]="activeclassName">
+      <ul class="nav">
+
+        <li [ngClass]="menu1" (mouseover)="changeStyle($event,1)" (mouseout)="changeStyle($event,1)">
+          <a class="nav-link" routerLink="/doctor/dashboard">
+            <span class="menu-title">Dashboard</span>
+            <i class="mdi mdi-home menu-icon" style=" color:#18b3de;"></i>
+          </a>
+        </li>
+
+        <li [ngClass]="menu2" (mouseover)="changeStyle($event,2)" (mouseout)="changeStyle($event,2)">
+          <a class="nav-link" routerLink="/doctor/profile">
+            <span class="menu-title">{{'DoctorProfile'| translate}}</span>
+            <i class="mdi mdi-account-card-details menu-icon" style=" color:#18b3de;"></i>
+          </a>
+        </li>
+
+
+
+
+
+        <li [ngClass]="menu3" (mouseover)="changeStyle($event,3)" (mouseout)="changeStyle($event,3)">
+          <a class="nav-link" routerLink="/doctor/slot">
+            <span class="menu-title">Slot Settings</span>
+            <i class="mdi mdi-timetable menu-icon" style=" color:#18b3de;"></i>
+          </a>
+        </li>
+
+
+        <!-- <li class="nav-item">
+                <a class="nav-link"  routerLink="/doctor/consultation">
+                  <span class="menu-title">Consultation</span>
+                  <i class="mdi mdi-timetable menu-icon"></i>
+                </a>
+              </li> -->
+
+        <li [ngClass]="menu4" (mouseover)="changeStyle($event,4)" (mouseout)="changeStyle($event,4)">
+          <a class="nav-link" routerLink="/doctor/appointments">
+            <span class="menu-title">Today Appointments</span>
+            <i class="mdi mdi-timetable menu-icon" style=" color:#18b3de;"></i>
+          </a>
+        </li>
+
+        <li [ngClass]="menu5" (mouseover)="changeStyle($event,5)" (mouseout)="changeStyle($event,5)">
+          <a class="nav-link" routerLink="/doctor/pastconsultations">
+            <span class="menu-title">Past Consultations</span>
+            <i class="mdi mdi-timetable menu-icon" style=" color:#18b3de;"></i>
+          </a>
+        </li>
+
+
+        <li [ngClass]="menu2" (mouseover)="changeStyle($event,2)" (mouseout)="changeStyle($event,2)">
+          <a class="nav-link" routerLink="/doctor/mrappointment">
+            <span class="menu-title">MR Consultations List</span>
+            <i class="mdi mdi-account-card-details menu-icon" style=" color:#18b3de;"></i>
+          </a>
+        </li>
+
+
+
+
+        <li [ngClass]="menu6" (mouseover)="changeStyle($event,6)" (mouseout)="changeStyle($event,6)">
+          <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false"
+            aria-controls="sidebar-Appointments">
+            <span class="menu-title">Report</span>
+            <i class="menu-arrow"></i>
+            <i class="mdi mdi-calendar menu-icon" style=" color:#18b3de;"></i>
+          </a>
+
+
+
+
+          <div class="collapse" id="report" style="">
+            <ul class="nav flex-column sub-menu yscroll" style="max-height: 250px">
+              <li class="nav-item"> <a class="nav-link" [routerLink]="['/doctorreport/patientmrdoctorsummary']">Patient/MR Detail
+                </a></li>
+            </ul>
+
+
+          </div>
+        </li>
+
+        <!-- <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span class="menu-title">Reports</span>
+                  <i class="mdi mdi-chart-histogram menu-icon"></i>
+                </a>
+              </li> -->
+
+
+      </ul>
+    </nav>
+    <!-- partial -->
+    <div class="main-panel">
+
+      <audio #audioOption loop>
+        <source src='assets/deny.mp3' type="audio/mp3">
+      </audio>
+      <router-outlet></router-outlet>
+
+
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class=" text-center text-sm-left d-block d-sm-inline-block"> © 2020 All rights reserved.</span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Powered by <img
+              src="assets/images/ecubix-logo.svg" width="76px" alt="logo" class="ml-2"></span>
+        </div>
+
+
+      </footer>
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>

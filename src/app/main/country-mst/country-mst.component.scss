@@ -1,0 +1,249 @@
+@import "src/@fuse/scss/fuse";
+
+/* Style inputs, select elements and textareas */
+input[type=text], select, textarea{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+/* Style the label to display next to the inputs */
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+/* Style the submit button */
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+/* Style the container */
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+/* Floating column for labels: 25% width */
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+.col-20 {
+    float: left;
+    width: 20%;
+    margin-top: 6px;
+  }
+
+
+
+/* Floating column for inputs: 75% width */
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+.col-100 {
+    float: left;
+    width: 100%;
+    margin-top: 6px;
+  }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+//Aded
+.table, th , td {
+    border: 1px solid grey;
+    border-collapse: collapse;
+    padding: 5px;
+  }
+  
+  .table tr:nth-child(odd) {
+    background-color: #f1f1f1;
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+iframe{
+    cursor:default !important; 
+}
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+.save-button {
+    position: absolute;
+    right: 100px;
+    top: 10px;
+    cursor:pointer;
+    @include media-breakpoint('lt-md') {
+        top: 8px;
+    }
+}
+.FullScreen {
+    position: absolute;
+    right: 70px;
+    top: 10px;
+    cursor:pointer;
+    @include media-breakpoint('lt-md') {
+        top: 6px;
+    }
+}
+.delete-button {
+    position: absolute;
+    right: 40px;
+    top: 10px;
+    cursor:pointer;
+    @include media-breakpoint('lt-md') {
+        top: 8px;
+    }
+}
+
+.download-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor:pointer;
+    @include media-breakpoint('lt-md') {
+        top: 8px;
+    }
+}
+
+.report_title{
+
+    @include media-breakpoint('lt-md') {
+        font-size: 20px;
+    }
+}
+
+:host {
+
+    #products {
+
+        .top-bg {
+            @include media-breakpoint-down(xs) {
+                height: 240px;
+            }
+        }
+
+        > .center {
+
+            > .header {
+
+                .search-input-wrapper {
+                    max-width: 480px;
+                    @include media-breakpoint('xs') {
+                        max-width: inherit;
+                        width: 100%;
+                    }
+                }
+
+                @include media-breakpoint-down('xs') {
+                    margin: 8px 0;
+                    height: 100% !important;
+                    min-height: 150px !important;
+                    max-height: 220px !important;
+                }
+                .add-product-button{
+                    @include media-breakpoint('sm') {
+                        min-width: 150px;
+                    }
+                }
+            }
+        }
+    }
+
+    .products-table {
+        flex: 1 1 auto;
+        border-bottom: 1px solid rgba(0, 0, 0, .12);
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+
+        .mat-header-row {
+            min-height: 64px;
+        }
+
+        .product {
+            position: relative;
+            cursor: pointer;
+            height: auto;
+        }
+
+        .mat-cell {
+            min-width: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .mat-column-id {
+            flex: 0 1 84px;
+        }
+
+        .mat-column-image {
+            flex: 0 1 84px;
+
+            .product-image {
+                width: 52px;
+                height: 52px;
+                border: 1px solid rgba(0, 0, 0, .12);
+            }
+        }
+
+        .mat-column-buttons {
+            flex: 0 1 80px;
+        }
+
+        .quantity-indicator {
+            display: inline-block;
+            vertical-align: middle;
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            margin-right: 8px;
+
+            & + span {
+                display: inline-block;
+                vertical-align: middle;
+            }
+        }
+
+        .active-icon {
+            border-radius: 50%;
+        }
+    }
+
+
+
+
+}
+
+table {
+    width: 100%;
+  }
+  
+   

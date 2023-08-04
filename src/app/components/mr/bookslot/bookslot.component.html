@@ -1,0 +1,294 @@
+<div class="container-scroller">
+
+
+  <div class="container-fluid page-body-wrapper" [hidden]="!divstep1">
+    <div class="main-panel w-100">
+      <div class="content-wrapper">
+
+        <div class="page-header bg-primary " style="margin-top: 100px;">
+          <h3 class="page-title text-center text-white py-3 w-100 radius-4">Book Slot </h3>
+
+        </div>
+
+        <div class="row dashboardcard">
+          <div class="col-md-12 grid-margin stretch-card ">
+            <div class="card">
+              <div class="card-header header-sm">
+                <h2 class="card-title my-1">Doctor Details</h2>
+              </div>
+              <div class="card-body">
+
+
+
+                <div class=" row ">
+
+
+                  <div class="col-md-6 form-group">
+
+
+                    <label for="exampleInputUsername1">Hospital<span class="text-danger">*</span></label>
+                    <select class="form-control" name="HospitalId" [(ngModel)]="HospitalId" #hosppitalddl
+                      (change)='onHospitalSelected(hosppitalddl.value)'>
+                      <option value="0" selected="selected">Select</option>
+                      <option *ngFor="let objhop of allhospitallst" value="{{objhop.HospitalId}}">
+                        {{objhop.HospitalName}}
+                      </option>
+                    </select>
+
+
+                  </div>
+
+
+                  <div class="col-md-6 form-group">
+
+
+                    <label for="exampleInputUsername1">Branch<span class="text-danger">*</span></label>
+                    <select class="form-control" name="BranchId" [(ngModel)]="BranchId" #Branchddl
+                      (change)='onBranchSelected(Branchddl.value)'>
+                      <option value="0" selected="selected">Select</option>
+                      <option *ngFor="let objBranch of allbranchlst" value="{{objBranch.BranchId}}">
+                        {{objBranch.BranchName}}
+                      </option>
+                    </select>
+
+
+                  </div>
+
+                  <div class="col-md-6 form-group">
+
+
+                    <label for="exampleInputUsername1">Department<span class="text-danger">*</span></label>
+                    <select class="form-control" name="DepartmentId" [(ngModel)]="DepartmentId" #Departmentddl
+                      (change)='onDepartmentSelected(Departmentddl.value)'>
+                      <option value="0" selected="selected">Select</option>
+                      <option *ngFor="let objDepartment of alldepartmentlst" value="{{objDepartment.DepartmentId}}">
+                        {{objDepartment.DepartmentName}}
+                      </option>
+                    </select>
+
+
+                  </div>
+
+
+
+
+
+                  <div class="col-md-6 form-group">
+
+
+                    <label for="exampleInputUsername1">Doctor<span class="text-danger">*</span></label>
+                    <select class="form-control" name="DoctorId" [(ngModel)]="DoctorId" #Doctorddl
+                      (change)='onDoctorSelected(Doctorddl.value)'>
+                      <option value="0" selected="selected">Select</option>
+                      <option *ngFor="let objDoctor of alldoctorlst" value="{{objDoctor.DoctorId}}">
+                        {{objDoctor.FirstName}} {{objDoctor.MiddleName}} {{objDoctor.LastName}}
+                      </option>
+                    </select>
+
+
+                  </div>
+
+
+                  <div class="col-md-6 form-group">
+                    <label for="exampleInputUsername1">Subject<span class="text-danger">*</span></label>
+                    <input type="text" autocomplete="off" class="form-control" name="Subject" maxlength="500"
+                      [(ngModel)]="Subject" placeholder="Subject" Ignorespecialchar>
+
+
+                  </div>
+
+
+
+                  <!-- Select Booking Schedule -->
+
+
+
+                </div>
+
+
+
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row dashboardcard" [hidden]="!slotdivshow">
+          <div class="col-md-12 grid-margin stretch-card ">
+            <div class="card">
+              <div class="card-header header-sm">
+                <h2 class="card-title my-1">Select Date & Time</h2>
+              </div>
+              <div class="card-body">
+                <div class=" row ">
+                  <div class="col-md-6 m-auto">
+                    <div class=" row ">
+                      <div class="col-md-12 text-center">
+                        <h4 class="card-title"> When would you like to select a doctor.</h4>
+
+                      </div>
+
+                      <div class="col-md-12 text-center my-4">
+                        <div class="meeting-day">
+                          <ul>
+                            <li class="left-arrow">
+                              <a (click)="binddaycalender(1)">
+                                <i class="mdi mdi-arrow-left"></i>
+                              </a>
+                            </li>
+                            <li>
+                              <a (click)="f_selectdate(display1date,1)" Class="btn"
+                                [ngClass]="cssclassdisplay1==1 ? 'btn-primary' : 'btn-light'">
+                                <span>{{ display1date | date :'EEE' }}
+                                </span>
+                                <span class="slot-date">{{ display1date | date :'d MMM' }} </span>
+                              </a>
+                            </li>
+                            <li>
+                              <a (click)="f_selectdate(display2date,2)" Class="btn"
+                                [ngClass]="cssclassdisplay2==1 ? 'btn-primary' : 'btn-light'">
+                                <span>{{ display2date | date :'EEE' }} </span>
+                                <span class="slot-date">{{ display2date | date :'d MMM' }} </span>
+                              </a>
+                            </li>
+
+
+
+
+                            <li>
+                              <a (click)="f_selectdate(display3date,3)" Class="btn"
+                                [ngClass]="cssclassdisplay3==1 ? 'btn-primary' : 'btn-light'">
+                                <span>{{ display3date | date :'EEE' }} </span>
+                                <span class="slot-date">{{ display3date | date :'d MMM' }} </span>
+                              </a>
+                            </li>
+                            <li class="right-arrow">
+                              <a (click)="binddaycalender(2)">
+                                <i class="mdi mdi-arrow-right"></i>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+
+                      </div>
+
+
+
+                      <div class="col-md-12 ">
+                        <a (click)="slotselected(row)" class="btn w-100 mb-3"
+                          [ngClass]="row.Status==0 ? 'btn-primary' : 'btn-light'"
+                          *ngFor="let row of allslotlst">{{row.SlotFromTime.totalMinutes * 1000 * 60| date:'hh:mm
+                          a':'UTC'}}-
+                          {{row.SlotEndTime.totalMinutes * 1000 * 60| date:'hh:mm a':'UTC'}}</a>
+
+
+                        <a class="btn btn-primary w-100 mb-12" *ngIf="allslotlst?.length==0">No slots
+                          avaiable</a>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                <button type="submit" class="btn btn-primary  btn-fw w-m-100" (click)="paymentStep()">Next</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container-fluid page-body-wrapper" [hidden]="!divstep2">
+    <div class="main-panel w-100">
+      <div class="content-wrapper">
+
+
+        <div class="page-header bg-primary " style="margin-top: 100px;">
+          <h3 class="page-title text-center text-white py-3 w-100 radius-4">Book Slot</h3>
+
+        </div>
+
+
+
+
+        <div class="row dashboardcard">
+          <div class="col-md-12 grid-margin stretch-card ">
+            <div class="card">
+              <div class="card-header header-sm">
+                <h2 class="card-title my-1">Details</h2>
+              </div>
+              <div class="card-body">
+
+
+
+                <div class=" row ">
+
+
+
+                  <div class="col-md-4 form-group">
+                    <label for="exampleInputUsername1"><strong>Hospital : </strong> </label>
+                    <label for="exampleInputUsername1"> {{hostpitalinfo?.HospitalName}}</label>
+                  </div>
+
+
+                  <div class="col-md-4 form-group">
+                    <label for="exampleInputUsername1"><strong>Branch : </strong> </label>
+                    <label for="exampleInputUsername1"> {{branchinfo?.BranchName}}</label>
+                  </div>
+
+
+                  <div class="col-md-4 form-group">
+                    <label for="exampleInputUsername1"><strong>Department : </strong> </label>
+                    <label for="exampleInputUsername1"> {{departmentinfo?.DepartmentName}}</label>
+                  </div>
+
+                  <div class="col-md-4 form-group">
+                    <label for="exampleInputUsername1"><strong>Doctor : </strong> </label>
+                    <label for="exampleInputUsername1"> {{doctorname?.FirstName}} {{doctorname?.MiddleName}}
+                      {{doctorname?.LastName}}</label>
+                  </div>
+
+                  <div class="col-md-4 form-group">
+                    <label for="exampleInputUsername1"><strong>Appointment Date : </strong> </label>
+                    <label for="exampleInputUsername1"> {{appointmentdisplay | date}}</label>
+                  </div>
+
+
+                  <div class="col-md-4 form-group">
+                    <label for="exampleInputUsername1"><strong>Timming : </strong> </label>
+                    <label for="exampleInputUsername1"> {{slotdisplay}} </label>
+                  </div>
+
+
+                </div>
+
+
+
+
+              </div>
+
+              <div class="card-footer text-center">
+                <button type="submit" class="btn btn-primary btn-fw w-m-100" (click)="payment()">Confirm</button>
+
+                <button class="btn btn-light btn-fw w-m-100" (click)="paymentcancel()">Back</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+</div>

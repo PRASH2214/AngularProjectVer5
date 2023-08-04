@@ -1,0 +1,86 @@
+<div class="content-wrapper">
+
+    <div class="page-header">
+        <h3 class="page-title"> Update Drug </h3>
+
+    </div>
+    <div class="row dashboardcard">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+
+
+                <div class="card-body">
+                    <form [formGroup]="DrugForm">
+
+
+
+                        <div class=" row mt-4">
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Drug Name<span
+                                    class="text-danger">*</span></label>
+                                <input type="text" autocomplete="off" class="form-control" name="DrugName"
+                                    formControlName="DrugName" placeholder="Drug Name"
+                                    [ngClass]="{ 'is-invalid': submitted && f.DrugName.errors }" maxlength="250" Ignorespecialchar>
+                                <div *ngIf="submitted && f.DrugName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.DrugName.errors.required">Drug Name is required</div>
+                                </div>
+
+                            </div>
+
+
+                           
+
+
+
+                            <div class="col-md-6 form-group">
+                                <label for="exampleInputUsername1">Description<span
+                                        class="text-danger">*</span></label>
+                                <textarea class="form-control" name="Description" formControlName="Description"
+                                    rows="4" spellcheck="false"
+                                    [ngClass]="{ 'is-invalid': submitted && f.Description.errors }" maxlength="500" Ignorespecialchar></textarea>
+                                <div *ngIf="submitted && f.Description.errors" class="invalid-feedback">
+                                    <div *ngIf="f.Description.errors.required">Description is required</div>
+                                </div>
+
+                            </div>
+
+
+
+
+                           
+
+                            <div class="col-md-6 form-group mb-1">
+
+                                <div class="checkbox switcher float-left">
+                                    <label for="test1">
+                                        <span>Active/Inactive</span> <input type="checkbox" id="test1" formControlName="Status">
+                                        <span><small></small></span>
+
+                                    </label>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <hr>
+                        <button type="submit" class="btn btn-primary mr-2" (click)="Save()">Submit</button> <button
+                        class="btn btn-light" routerLink="/admin/drug">Cancel</button>
+
+
+
+                    </form>
+
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>

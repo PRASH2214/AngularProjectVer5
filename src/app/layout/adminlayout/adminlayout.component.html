@@ -1,0 +1,262 @@
+<div [ngClass]="activeclassName1">
+  <!-- navbar -->
+  <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row ">
+    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+      <a class="navbar-brand brand-logo"><img src="assets/images/ecubix-logo.svg" alt="logo" /></a>
+      <a class="navbar-brand brand-logo-mini"><img src="assets/images/ecubix-logo-mini.jpeg" alt="logo" /></a>
+    </div>
+    <div class="navbar-menu-wrapper d-flex align-items-stretch">
+      <button class="navbar-toggler navbar-toggler align-self-center" type="button" (click)="toggle1()"
+        data-toggle="minimize">
+        <span class="mdi mdi-menu text-white"></span>
+      </button>
+
+      <ul class="navbar-nav navbar-nav-right">
+
+        <li class="nav-item nav-profile dropdown">
+          <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown"
+            aria-expanded="false">
+            <div class="nav-profile-img">
+              <img [src]="imagestring" alt="image">
+              <span class="availability-status online"></span>
+            </div>
+            <div class="nav-profile-text text-white">
+              <p class="mb-1 text-white">{{master.CurrentUser.model.firstName}} {{master.CurrentUser.model.middleName}}
+                {{master.CurrentUser.model.lastName}}</p>
+            </div>
+          </a>
+          <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/admin/profilepic">
+              <i class="fa fa-cog mr-2" aria-hidden="true" style=" color:#18b3de;"></i>Profile Picture </a>
+            <a class="dropdown-item" (click)="logout()">
+              <i class="mdi mdi-logout mr-2 text-primary" style=" color:#18b3de;"></i> Signout </a>
+          </div>
+        </li>
+
+
+
+      </ul>
+      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+        data-toggle="offcanvas" (click)="toggle()">
+        <span class="mdi mdi-menu"></span>
+      </button>
+    </div>
+  </nav>
+
+
+
+
+
+  <!-- partial -->
+  <div class="container-fluid page-body-wrapper">
+    <!-- partial:partials/_sidebar.html -->
+    <nav [ngClass]="activeclassName">
+      <ul class="nav">
+
+        <li [ngClass]="menu1" (mouseover)="changeStyle($event,1)" (mouseout)="changeStyle($event,1)">
+          <a class="nav-link" routerLink="/admin/dashboard">
+            <span class="menu-title">{{'Dashboard'| translate}}</span>
+            <i class="mdi mdi-home menu-icon" style=" color:#18b3de;"></i>
+          </a>
+        </li>
+
+        <li [ngClass]="menu2" (mouseover)="changeStyle($event,2)" (mouseout)="changeStyle($event,2)">
+          <a class="nav-link" routerLink="/admin/profile">
+            <span class="menu-title">{{'AdminProfile'| translate}}</span>
+            <i class="mdi mdi-account-card-details menu-icon" style=" color:#18b3de;"></i>
+          </a>
+        </li>
+
+
+        <li [ngClass]="menu3" (mouseover)="changeStyle($event,3)" (mouseout)="changeStyle($event,3)">
+          <a class="nav-link" data-toggle="collapse" href="#Appointmentstt" aria-expanded="false"
+            aria-controls="sidebar-Appointments">
+            <span class="menu-title">{{'Setting'| translate}}</span>
+            <i class="menu-arrow"></i>
+            <i class="mdi  mdi-settings menu-icon" style=" color:#18b3de;"></i>
+          </a>
+
+
+
+
+          <div class="collapse" id="Appointmentstt">
+            <ul class="nav flex-column sub-menu yscroll" style="	max-height: 350px">
+
+
+              <li class="nav-item"> <a class="nav-link" routerLink="/admin/slot" routerLinkActive="active"><i
+                    class="fa fa-user-md" aria-hidden="true" style=" color:#18b3de;"></i>{{'Slot'| translate}}</a></li>
+
+
+              <li class="nav-item"> <a class="nav-link" routerLink="/admin/drug" routerLinkActive="active"><i
+                    class="fa fa-plus-square" aria-hidden="true" style=" color:#18b3de;"></i> {{'Drug'| translate}}</a>
+              </li>
+
+
+              <li class="nav-item"> <a class="nav-link" routerLink="/admin/drugtype" routerLinkActive="active"><i
+                    class="fa fa-medkit" aria-hidden="true" style=" color:#18b3de;"></i> {{'DrugType'| translate}}</a>
+              </li>
+
+              <li class="nav-item"> <a class="nav-link" routerLink="/admin/dosage" routerLinkActive="active"><i
+                    class="fa fa fa-tint" aria-hidden="true" style=" color:#18b3de;"></i>{{'Dosage'| translate}}</a>
+              </li>
+              <li class="nav-item"> <a class="nav-link" routerLink="/admin/speciality" routerLinkActive="active"><i
+                    class="fa fa-user-md" aria-hidden="true" style=" color:#18b3de;"></i>{{'Speciality'| translate}}</a>
+              </li>
+
+
+
+              <li class="nav-item"> <a class="nav-link" routerLink="/admin/paymentterms" routerLinkActive="active"><i
+                    class="fa fa-usd" aria-hidden="true" style=" color:#18b3de;"></i>{{'Paymentterms'| translate}}
+                </a></li>
+              <!-- <li class="nav-item"> <a class="nav-link">MR Master</a></li> -->
+            </ul>
+          </div>
+        </li>
+
+
+        <li [ngClass]="menu4" (mouseover)="changeStyle($event,4)" (mouseout)="changeStyle($event,4)">
+          <a class="nav-link" data-toggle="collapse" href="#Appointments" aria-expanded="false"
+            aria-controls="sidebar-Appointments">
+            <span class="menu-title">{{'Master'| translate}}</span>
+            <i class="menu-arrow"></i>
+            <i class="mdi mdi-calendar menu-icon" style=" color:#18b3de;"></i>
+          </a>
+
+
+
+
+          <div class="collapse" id="Appointments">
+            <ul class="nav flex-column sub-menu yscroll" style="	max-height: 350px">
+
+
+              <li class="nav-item"><a class="nav-link" routerLink="/admin/hospital" routerLinkActive="active"><i
+                    class="fa fa-hospital-o" aria-hidden="true" style=" color:#18b3de;"></i>
+                  {{'Hospital'| translate}}</a></li>
+
+              <li class="nav-item"> <a class="nav-link" routerLink="/admin/branch" routerLinkActive="active"><i
+                    class="fa fa-university" aria-hidden="true" style=" color:#18b3de;"></i>
+                  {{'Branch'| translate}}</a>
+              </li>
+              <li class="nav-item"> <a class="nav-link" routerLink="/admin/department" routerLinkActive="active"><i
+                    class="fa fa-building" aria-hidden="true" style=" color:#18b3de;"></i> {{'Department'|
+                  translate}}</a></li>
+
+              <li class="nav-item"> <a class="nav-link" routerLink="/admin/doctor" routerLinkActive="active"><i
+                    class="fa fa-stethoscope" aria-hidden="true" style=" color:#18b3de;"></i>{{'Doctor'| translate}}</a>
+              </li>
+              <li class="nav-item"> <a class="nav-link" routerLink="/admin/medicine" routerLinkActive="active"><i
+                    class="fa fa-medkit" aria-hidden="true" style=" color:#18b3de;"></i> {{'Medicine'| translate}}</a>
+              </li>
+
+
+              <li class="nav-item"> <a class="nav-link" routerLink="/admin/company" routerLinkActive="active"><i
+                    class="fa fa-industry" aria-hidden="true" style=" color:#18b3de;"></i>{{'Company'| translate}}</a>
+              </li>
+
+              <li class="nav-item"> <a class="nav-link" routerLink="/admin/mr" routerLinkActive="active"><i
+                    class="fa fa-user-md" aria-hidden="true" style=" color:#18b3de;"></i>{{'MR'| translate}}</a></li>
+
+
+              <!-- <li class="nav-item"> <a class="nav-link">MR Master</a></li> -->
+            </ul>
+          </div>
+        </li>
+
+
+
+        <li [ngClass]="menu5" (mouseover)="changeStyle($event,5)" (mouseout)="changeStyle($event,5)">
+          <a class="nav-link" data-toggle="collapse" href="#upload" aria-expanded="false"
+            aria-controls="sidebar-Appointments">
+            <span class="menu-title">{{'Bulkupload'| translate}}</span>
+            <i class="menu-arrow"></i>
+            <i class="mdi mdi-calendar menu-icon" style=" color:#18b3de;"></i>
+          </a>
+
+
+
+
+          <div class="collapse" id="upload" style="">
+            <ul class="nav flex-column sub-menu yscroll" style="max-height: 280px">
+              <li class="nav-item"> <a class="nav-link" [routerLink]="['/admin/hospitalbulkupload']">{{'Hospital'|
+                  translate}} </a></li>
+
+              <li class="nav-item"> <a class="nav-link" [routerLink]="['/admin/brachbulkupload']"
+                  routerLinkActive="active">
+                  {{'Branch'| translate}} </a></li>
+
+
+              <li class="nav-item"> <a class="nav-link" [routerLink]="['/admin/departmentbulkupload']"
+                  routerLinkActive="active">{{'Department'| translate}}</a></li>
+
+
+              <li class="nav-item"> <a class="nav-link" [routerLink]="['/admin/doctorbulkupload']"
+                  routerLinkActive="active">{{'Doctor'| translate}} </a></li>
+
+
+              <li class="nav-item"> <a class="nav-link" [routerLink]="['/admin/companybulkupload']"
+                  routerLinkActive="active">
+                  {{'Company'| translate}}</a></li>
+
+              <li class="nav-item"> <a class="nav-link" [routerLink]="['/admin/medicinebulkupload']"
+                  routerLinkActive="active">Medicine</a></li>
+
+              <li class="nav-item"> <a class="nav-link" [routerLink]="['/admin/mrbulkupload']"
+                  routerLinkActive="active">MR </a></li>
+
+            </ul>
+          </div>
+        </li>
+
+
+
+        <li [ngClass]="menu6" (mouseover)="changeStyle($event,6)" (mouseout)="changeStyle($event,6)">
+          <a class="nav-link" data-toggle="collapse" href="#report" aria-expanded="false"
+            aria-controls="sidebar-Appointments">
+            <span class="menu-title">Report</span>
+            <i class="menu-arrow"></i>
+            <i class="mdi mdi-calendar menu-icon" style=" color:#18b3de;"></i>
+          </a>
+
+
+
+
+          <div class="collapse" id="report" style="">
+            <ul class="nav flex-column sub-menu yscroll" style="max-height: 250px">
+              <li class="nav-item"> <a class="nav-link" [routerLink]="['/report/appointmentsummary']">Appointment
+                  Summary</a></li>
+            </ul>
+
+            <ul class="nav flex-column sub-menu yscroll" style="max-height: 250px">
+              <li class="nav-item"> <a class="nav-link" [routerLink]="['/report/patientmrsummary']">Patient/MR Detail
+                </a></li>
+            </ul>
+
+
+          </div>
+        </li>
+
+      </ul>
+    </nav>
+    <!-- partial -->
+    <div class="main-panel">
+
+      <router-outlet></router-outlet>
+      <!-- content-wrapper ends -->
+      <!-- partial:partials/_footer.html -->
+      <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class=" text-center text-sm-left d-block d-sm-inline-block"> © 2020 All rights reserved.</span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Powered by <img
+              src="assets/images/ecubix-logo.svg" width="76px" alt="logo" class="ml-2"></span>
+        </div>
+
+
+      </footer>
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
+</div>

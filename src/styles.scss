@@ -1,0 +1,285 @@
+// Import Fuse core library
+@import "@fuse/scss/core";
+
+// -----------------------------------------------------------------------------------------------------
+// @ Multiple material themes example
+// -----------------------------------------------------------------------------------------------------
+
+// Define the Material palettes
+$yellow-theme-primary: mat-palette($mat-fusedark);
+$yellow-theme-accent: mat-palette($mat-yellow, 600, 400, 700);
+$yellow-theme-warn: mat-palette($mat-red);
+
+// Create the Material theme object
+$yellow-theme: mat-light-theme($yellow-theme-primary, $yellow-theme-accent, $yellow-theme-warn);
+
+// Add ".yellow-theme" class to the body to activate this theme
+.yellow-theme {
+
+    // Generate the Angular Material theme
+    @include angular-material-theme($yellow-theme);
+
+    // Generate the fuse color classes with the new colors...
+    @include generateFuseColorClasses($yellow-theme-primary, $yellow-theme-accent, $yellow-theme-warn);
+}
+
+
+
+// Variable  
+    $primary-color: hotpink;
+
+
+// Mixin
+@mixin border-radius($radius) {  
+    -webkit-border-radius: $radius;  
+    -moz-border-radius: $radius;  
+    border-radius: $radius;  
+}  
+  
+// .my-element {  
+//     color: $primary-color;  
+//     width: 100%;  
+//     overflow: hidden;  
+// }  
+  
+// .my-other-element {  
+//     @include border-radius(5px);  
+// }  
+
+/*-----------Start-Web-by-Pramod------------*/
+
+
+
+// .label_text {
+//     float: left;
+//     width: auto;
+//     margin-top: 2px;
+//     min-width: 100px;
+// }
+// .label_field {
+//     width: auto;
+//     float: left;
+// }
+// .label_field .mat-radio-button {
+//     margin: 0 10px;
+// }
+
+.page-layout {
+    .content{
+        .mat-radio-button { 
+            margin: 5px 10px; 
+        }
+    }
+}
+
+.header {
+    
+    span.secondary-text{
+        display: inline-block;
+        width: auto;
+        padding-top:3px; 
+    }
+
+    .breadcrumb {
+        display: inline-block;
+        width: auto;
+        @include media-breakpoint('xs') {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        .mat-icon-button {
+            display: inline-block;
+            width: auto;
+            float: left;
+        }
+        .product-image {
+            float: left;
+            width: auto;
+        }
+        .ng-trigger-animate {
+            float: left;
+            width: 100%;
+        }
+    }
+    .save-product-button {
+        position: absolute;
+        right: 20px;
+        top: 42px;
+    }
+}
+
+.page-layout {
+    .header {
+        height: auto !important;
+        min-height: inherit !important;
+        max-height: inherit !important;
+        padding: 5px 20px !important;
+
+    }
+}
+
+.logo {
+    text-align: center;
+}
+
+
+
+
+
+toolbar{
+    mat-toolbar{
+        fuse-search-bar{
+            .fuse-search-bar{
+                height: 40px !important;
+                line-height: 40px !important;
+            }   
+        }
+    }
+}
+
+
+
+.mat-accent-bg-green {
+    background-color: #00793a !important;
+    color: white !important;
+    //background-color: #004a96 !important;
+}
+.mat-accent-bg-blue {
+    //background-color: #00793a !important;
+    background-color: #004a96 !important;
+    color: white !important;
+}
+.mat-accent-bg {
+    //background-color: #00793a !important;
+    background-color: #004a96 !important;
+    color: white !important;
+}
+
+fuse-sidebar.folded .user{ 
+    display: none !important; 
+    width: 100% !important;
+    text-align: center; 
+}
+fuse-sidebar.unfolded .user{ 
+    display: block !important; 
+    width: 100% !important;
+    text-align: center; 
+}
+
+.navbar-fuse-sidebar {
+    .left-navbar {
+        .user img {
+            max-width: 140px;
+        }
+    }
+}
+.navbar-fuse-sidebar {
+    .navbar-top {
+        min-height: 83px;
+        max-height: 83px;
+        height: 83px;
+        
+     }
+     &.unfolded navbar navbar-vertical-style-1 .navbar-top {
+        min-height: 83px;
+        max-height: 83px;
+        height: 83px;
+        
+    }
+    .navbar-top-green {
+        min-height: 83px;
+        max-height: 83px;
+        height: 83px;
+        
+     }
+     &.unfolded navbar navbar-vertical-style-1 .navbar-top-green {
+        min-height: 83px;
+        max-height: 83px;
+        height: 83px;
+        
+    }
+    
+    
+}
+
+
+/*-----------End-Web-by-Pramod------------*/
+
+
+/*-----------Start-Responsive-by-Pramod------------*/
+
+
+.label_text{ 
+    @include media-breakpoint('xs') {
+        width: 100%; 
+    }
+}
+.label_field{ 
+    @include media-breakpoint('xs') {
+        width: 100%; 
+    }
+}
+
+.label_field {
+    .mat-radio-button { 
+        @include media-breakpoint('xs') {
+            margin: 3px 10px; 
+        }
+    }
+}
+
+.bullet-icon{
+    display: list-item;
+    margin-left: 15px;
+    list-style-type: disc;
+}
+
+/*-----------End-Responsive-by-Pramod--------------*/
+iframe{
+    cursor: default !important; 
+}
+.wcStaticImage {
+    cursor: default !important; 
+}
+.wcGlassPane {  
+    cursor: default !important; 
+}
+.tvimagesContainer {  
+    cursor: default !important; 
+}
+iframe html {  
+    cursor: default !important; 
+}
+iframe body {  
+    cursor: default !important; 
+}
+.cdk-overlay-connected-position-bounding-box
+{
+    top:40px !important;
+}
+.my-class .mat-dialog-container{
+    height: 65vw;
+    width: 80vw;
+    padding: 0;
+  }
+  .my-class .mat-dialog-content{
+    max-height: 75vw !important;
+  }
+.my-class .mat-toolbar-row, .mat-toolbar-single-row
+{
+    height: 40px !important;
+}
+.my-class .mat-toolbar-multiple-rows {
+    min-height: 35px;
+}
+.my-select-panel-class {
+    width:20px;
+    max-width:20px;
+    background-color: red;
+    font-size: 10px;
+}
+.mat-icon
+{
+color:white;
+
+}
